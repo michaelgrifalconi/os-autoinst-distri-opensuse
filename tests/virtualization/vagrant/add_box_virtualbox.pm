@@ -26,7 +26,13 @@ use vagrant;
 sub run() {
     setup_vagrant_virtualbox();
 
-    select_console('user-console');
+    select_console('root-console');
+
+    #DEBUG PURPOSE
+    script_run('vagrant destroy -f');
+    assert_script_run('rm -rf Vagrantfile testfile .vagrant');
+    ##############
+    
     assert_script_run('echo "test" > testfile');
 
     assert_script_run('vagrant init centos/7');
@@ -40,6 +46,7 @@ sub run() {
 }
 
 sub post_fail_hook() {
+    script_run('vagrant destroy -f');
     assert_script_run('rm -rf Vagrantfile testfile .vagrant');
 }
 

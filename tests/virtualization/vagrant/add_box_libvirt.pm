@@ -26,7 +26,13 @@ use vagrant;
 sub run() {
     setup_vagrant_libvirt();
 
-    select_console('user-console');
+    select_console('root-console');
+
+    #DEBUG PURPOSE
+    script_run('vagrant destroy -f');
+    assert_script_run('rm -rf Vagrantfile testfile .vagrant');
+    ##############
+
 
     # expect the output to contain the line if vagrant-libvirt has been
     # correctly installed via the RPM:
@@ -48,6 +54,7 @@ sub run() {
 }
 
 sub post_fail_hook() {
+    script_run('vagrant destroy -f');
     assert_script_run('rm -rf Vagrantfile testfile .vagrant');
 }
 

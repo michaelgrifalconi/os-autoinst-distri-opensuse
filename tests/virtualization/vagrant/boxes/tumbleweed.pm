@@ -35,7 +35,7 @@ sub run() {
     select_console('root-console');
     zypper_call('in ansible');
 
-    select_console('user-console');
+    ##select_console('user-console');
 
     # version = Tumbleweed, Leap 15 etc
     my $version = get_required_var('VERSION');
@@ -64,6 +64,10 @@ sub run() {
         my $upcase_provider = uc $provider;
         assert_script_run("sed -i 's|BOXNAME_$upcase_provider|$boxname|' Vagrantfile");
     }
+
+    #DEBUG STUFF
+    script_run('rm -rf test_dir');
+    ########
 
     # move the Vagrantfile into a empty subdirectory and invoke vagrant from
     # there, so that we don't synchronize the huge .box files into the VM
@@ -103,6 +107,10 @@ sub run() {
     }
 
     assert_script_run("popd");
+}
+
+sub post_fail_hook() {
+   script_run('rm -rf test_dir Vagrantfile .vagrant');
 }
 
 1;

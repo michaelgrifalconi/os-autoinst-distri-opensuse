@@ -29,7 +29,7 @@ sub run() {
     select_console('root-console');
     zypper_call("in vagrant-sshfs vagrant-sshfs-testsuite");
 
-    select_console('user-console');
+    #select_console('user-console');
 
     # check that the plugin is correctly installed
     assert_script_run('vagrant plugin list|grep sshfs|grep -q system');
@@ -40,6 +40,12 @@ sub run() {
     # - write "Bar" into the testfile in the VM => check that that propagates to the host
     #
     assert_script_run('echo "Foo" > testfile');
+
+    #DEBUG PURPOSE
+    script_run('vagrant destroy -f');
+    assert_script_run('rm -rf Vagrantfile testfile .vagrant');
+    ##############
+
 
     assert_script_run('vagrant init opensuse/Tumbleweed.' . get_required_var('ARCH'));
 
@@ -63,11 +69,12 @@ sub run() {
     assert_script_run('$(rpm -ql vagrant-sshfs-testsuite|grep testsuite.sh)', timeout => 1200);
 
     # cleanup
-    assert_script_run('rm -rf Vagrantfile .vagrant');
+    assert_script_run('rm -rf Vagrantfile .vagrant testfile');
 }
 
 sub post_fail_hook() {
-    assert_script_run('rm -rf Vagrantfile .vagrant');
+    script_run('rm -rf Vagrantfile testfile .vagrant testfile');
+    script_run('rm -rf Vagrantfile .vagrant');
 }
 
 1;

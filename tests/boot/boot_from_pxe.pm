@@ -104,7 +104,11 @@ sub run {
             $image_name = get_var('PXE_PRODUCT_NAME') if get_var('PXE_PRODUCT_NAME');
             $image_path = "/mounts/dist/install/SLP/${image_name}/${arch}/DVD1/boot/${arch}/loader/linux ";
             $image_path .= "initrd=/mounts/dist/install/SLP/${image_name}/${arch}/DVD1/boot/${arch}/loader/initrd ";
-            $image_path .= "install=http://mirror.suse.cz/install/SLP/${image_name}/${arch}/DVD1$device ";
+            $image_path .= "install=http://mirror.suse.cz/install/SLP/${image_name}/${arch}/DVD1";
+	    if (!check_var('DISTRI', 'opensuse')) {
+                $image_path .= "$device";
+            }
+	    $image_path .= " ";
         }
     }
     elsif (match_has_tag('pxe-menu')) {
