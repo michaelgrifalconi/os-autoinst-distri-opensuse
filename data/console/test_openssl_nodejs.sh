@@ -17,7 +17,8 @@ test_result_wrapper(){
     # Run the test (using common and custom flags if present) and save the output
     echo "Running $NODE_FULL_VERSION $NODE $GLOBAL_FLAGS ${node_flags[$VERSION $FILE]}$FILE - Try #$i"
     set +e
-    $NODE $GLOBAL_FLAGS ${node_flags[$VERSION $FILE]} $FILE &> $OUTPUT
+    #$NODE $GLOBAL_FLAGS ${node_flags[$VERSION $FILE]} $FILE &> $OUTPUT
+    lol
     RESULT=$?
     set -e
     if [ $RESULT -eq 0 ]; then
