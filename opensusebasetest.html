@@ -15,6 +15,7 @@
   <li>
     <ul>
       <li><a href="#clear_and_verify_console">clear_and_verify_console</a></li>
+      <li><a href="#pre_run_hook">pre_run_hook</a></li>
       <li><a href="#post_run_hook">post_run_hook</a></li>
       <li><a href="#save_and_upload_log">save_and_upload_log</a></li>
       <li><a href="#tar_and_upload_log">tar_and_upload_log</a></li>
@@ -23,9 +24,11 @@
       <li><a href="#problem_detection">problem_detection</a></li>
       <li><a href="#investigate_yast2_failure">investigate_yast2_failure</a></li>
       <li><a href="#export_logs_basic">export_logs_basic</a></li>
+      <li><a href="#select_log_console">select_log_console</a></li>
       <li><a href="#export_logs">export_logs</a></li>
       <li><a href="#export_logs_locale">export_logs_locale</a></li>
       <li><a href="#upload_packagekit_logs">upload_packagekit_logs</a></li>
+      <li><a href="#upload_solvertestcase_logs">upload_solvertestcase_logs</a></li>
       <li><a href="#set_standard_prompt">set_standard_prompt</a></li>
       <li><a href="#export_logs_desktop">export_logs_desktop</a></li>
       <li><a href="#handle_uefi_boot_disk_workaround">handle_uefi_boot_disk_workaround</a></li>
@@ -50,6 +53,12 @@
 <pre><code> clear_and_verify_console();</code></pre>
 
 <p>Clear the console and ensure that it really got cleared using a needle.</p>
+
+<h2 id="pre_run_hook">pre_run_hook</h2>
+
+<pre><code> pre_run_hook();</code></pre>
+
+<p>This method will be called before each module is executed. Test modules (or their intermediate base classes) may overwrite this method, must call this baseclass method from the overwriting method.</p>
 
 <h2 id="post_run_hook">post_run_hook</h2>
 
@@ -89,15 +98,21 @@
 
 <h2 id="investigate_yast2_failure">investigate_yast2_failure</h2>
 
-<pre><code> investigate_yast2_failure();</code></pre>
+<pre><code> investigate_yast2_failure(logs_path =&gt; $logs_path);</code></pre>
 
-<p>Inspect the YaST2 logfile checking for known issues.</p>
+<p>Inspect the YaST2 logfile checking for known issues. logs_path can be a directory where logs are saved e.g. /tmp. In that case the function will parse /tmp/var/log/YaST2/y2logs* files.</p>
 
 <h2 id="export_logs_basic">export_logs_basic</h2>
 
 <pre><code> export_logs_basic();</code></pre>
 
 <p>Upload logs that make sense for any failure. This includes <code>/proc/loadavg</code>, <code>ps axf</code>, complete journal since last boot, <code>dmesg</code> and <code>/etc/sysconfig</code>.</p>
+
+<h2 id="select_log_console">select_log_console</h2>
+
+<pre><code> select_log_console();</code></pre>
+
+<p>Select &#39;log-console&#39; with higher timeout on screen check to even cover systems that react very slow due to high background load or high memory consumption. This should be especially useful in <code>post_fail_hook</code> implementations.</p>
 
 <h2 id="export_logs">export_logs</h2>
 
@@ -116,6 +131,12 @@
 <pre><code> upload_packagekit_logs();</code></pre>
 
 <p>Upload <code>/var/log/pk_backend_zypp</code>.</p>
+
+<h2 id="upload_solvertestcase_logs">upload_solvertestcase_logs</h2>
+
+<pre><code> upload_solvertestcase_logs();</code></pre>
+
+<p>Upload <code>/tmp/solverTestCase.tar.bz2</code>.</p>
 
 <h2 id="set_standard_prompt">set_standard_prompt</h2>
 
@@ -211,9 +232,9 @@
 
 <h2 id="upload_coredumps">upload_coredumps</h2>
 
-<pre><code> upload_coredumps();</code></pre>
+<pre><code> upload_coredumps(%args);</code></pre>
 
-<p>Upload all coredumps to logs</p>
+<p>Upload all coredumps to logs. In case `proceed_on_failure` key is set to true, errors during logs collection will be ignored, which is usefull for the post_fail_hook calls.</p>
 
 <h2 id="post_fail_hook">post_fail_hook</h2>
 

@@ -32,6 +32,7 @@
       <li><a href="#compare_bootparams">compare_bootparams</a></li>
       <li><a href="#create_encrypted_part">create_encrypted_part</a></li>
       <li><a href="#mimic_user_to_import">mimic_user_to_import</a></li>
+      <li><a href="#prepare_disks">prepare_disks</a></li>
     </ul>
   </li>
 </ul><h1>lib/bootloader_setup.pm</h1>
@@ -179,6 +180,12 @@
 <pre><code>    mimic_user_to_import(disk =&gt; $disk, passwd =&gt; $passwd, shadow =&gt; $shadow);</code></pre>
 
 <p>Creates /etc/passwd and /etc/shadow files to simluate existing users on the encrypted partition disk. Is expected to be used together with create_encrypted_part Can be used to test user import functionality not to chain jobs. Method accepts <code>disk</code> to define the device to work with, <code>passwd</code> and <code>shadow</code> store content of the /etc/passwd and /etc/shadow files accordingly.</p>
+
+<h2 id="prepare_disks">prepare_disks</h2>
+
+<pre><code>    prepare_disks</code></pre>
+
+<p>Wipe existing disks and create encrypted partitions if needed for the test. Is handy for the bare metal setups and LPARs where we can have traces of previous installation.</p>
 
 
 </body>
