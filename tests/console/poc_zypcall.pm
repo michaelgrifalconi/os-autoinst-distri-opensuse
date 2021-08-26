@@ -9,7 +9,7 @@ use utils 'zypper_call';
 sub run {
     my ($self) = @_;
     select_console('root-console');
-    zypper_call('in nano htop vim python php rabbitmq-server wget unzip');
+    zypper_call('in python php rabbitmq-server');
 }
 
 1;
