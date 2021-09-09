@@ -7,8 +7,10 @@ use testapi;
 use utils 'zypper_call';
 
 sub run {
-    my ($self) = @_;
-    select_console('root-console');
+    #my ($self) = @_;
+    #select_console('root-console');
+    my $self = shift;
+    $self->select_serial_terminal;
 
     my @a = (1..9);
     for my $i (@a){
