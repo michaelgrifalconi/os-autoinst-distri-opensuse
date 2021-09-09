@@ -9,10 +9,19 @@ use utils 'zypper_call';
 sub run {
     my ($self) = @_;
     select_console('root-console');
-    zypper_call('in python');
-    zypper_call('in php');
-    zypper_call('in rabbitmq-server');
-    zypper_call('in apache2');
+
+    my @a = (1..9);
+    for my $i (@a){
+        zypper_call('in python');
+        zypper_call('in php');
+        zypper_call('in rabbitmq-server');
+        zypper_call('in apache2');
+
+        zypper_call('rm python');
+        zypper_call('rm php');
+        zypper_call('rm rabbitmq-server');
+        zypper_call('rm apache2');
+    }
 }
 
 1;
