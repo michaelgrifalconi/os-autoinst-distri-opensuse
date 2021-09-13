@@ -544,6 +544,12 @@ sub zypper_call {
     my $printer = $log ? "| tee /tmp/$log" : $dumb_term ? '| cat' : '';
     die 'Exit code is from PIPESTATUS[0], not grep' if $command =~ /^((?!`).)*\| ?grep/;
 
+    # Michael zypper poc
+    my $current_terminal = current_console();
+    die "MICHPOC: $current_console";
+
+    # End poc
+
     $IN_ZYPPER_CALL = 1;
     # Retrying workarounds
     my $ret;
