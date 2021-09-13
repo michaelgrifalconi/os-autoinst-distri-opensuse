@@ -550,7 +550,6 @@ sub zypper_call {
         # is root, move to serial
         select_serial_terminal();
     }
-    die "MICHPOC: $current_terminal";
 
     # End poc
 
