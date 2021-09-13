@@ -546,7 +546,7 @@ sub zypper_call {
 
     # Michael zypper poc
     my $current_terminal = current_console();
-    die "MICHPOC: $current_console";
+    die "MICHPOC: $current_terminal";
 
     # End poc
 
