@@ -546,6 +546,10 @@ sub zypper_call {
 
     # Michael zypper poc
     my $current_terminal = current_console();
+    if ($current_terminal eq "root-console") {
+        # is root, move to serial
+        select_serial_terminal();
+    }
     die "MICHPOC: $current_terminal";
 
     # End poc
@@ -601,6 +605,10 @@ sub zypper_call {
         die $msg;
     }
     $IN_ZYPPER_CALL = 0;
+    if ($current_terminal eq "root-console") {
+        # was root, move back to root
+        select_console('root-console');
+    }
     return $ret;
 }
 
