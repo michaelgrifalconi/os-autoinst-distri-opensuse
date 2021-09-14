@@ -18,6 +18,7 @@ package utils;
 use base Exporter;
 use Exporter;
 
+use base 'consoletest';
 use strict;
 use warnings;
 use testapi qw(is_serial_terminal :DEFAULT);
