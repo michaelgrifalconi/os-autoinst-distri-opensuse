@@ -548,9 +548,13 @@ sub zypper_call {
     my $current_terminal = current_console();
     if ($current_terminal eq "root-console") {
         # is root, move to serial
-        select_serial_terminal();
+        $self->select_serial_terminal;
     }
-
+    my $new_terminal = current_terminal();
+    if ($current_terminal eq $new_terminal) {
+        # is root, move to serial
+        die "Nothing changed, still: $new_terminal";
+    }
     # End poc
 
     $IN_ZYPPER_CALL = 1;
