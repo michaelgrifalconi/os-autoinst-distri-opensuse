@@ -14,7 +14,6 @@ use utils qw(
   save_svirt_pty
   type_string_slow
   type_string_very_slow
-  zypper_call
 );
 use version_utils qw(is_hyperv_in_gui is_sle is_leap is_svirt_except_s390x is_tumbleweed is_opensuse);
 use x11utils qw(desktop_runner_hotkey ensure_unlocked_desktop);
