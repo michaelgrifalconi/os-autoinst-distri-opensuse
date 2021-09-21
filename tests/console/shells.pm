@@ -28,7 +28,7 @@ use warnings;
 use zypper;
 use testapi;
 use Utils::Architectures;
-use utils 'zypper_call';
+
 use version_utils 'is_leap';
 
 sub run() {

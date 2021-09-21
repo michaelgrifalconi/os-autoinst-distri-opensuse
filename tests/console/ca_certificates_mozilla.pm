@@ -18,7 +18,7 @@ use strict;
 use warnings;
 use zypper;
 use testapi;
-use utils 'zypper_call';
+
 
 sub run {
     my $self = shift;

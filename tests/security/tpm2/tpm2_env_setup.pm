@@ -23,7 +23,7 @@ use warnings;
 use zypper;
 use base 'opensusebasetest';
 use testapi;
-use utils 'zypper_call';
+
 use power_action_utils "power_action";
 
 sub run {

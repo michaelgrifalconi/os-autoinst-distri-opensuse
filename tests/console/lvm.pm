@@ -42,7 +42,7 @@ use zypper;
 use testapi;
 use Utils::Architectures;
 use version_utils;
-use utils 'zypper_call';
+
 use btrfs_test 'set_playground_disk';
 
 sub run {

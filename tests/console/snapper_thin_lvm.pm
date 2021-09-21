@@ -30,7 +30,7 @@ use testapi;
 use strict;
 use warnings;
 use zypper;
-use utils 'zypper_call';
+
 
 sub run {
     my ($self) = @_;

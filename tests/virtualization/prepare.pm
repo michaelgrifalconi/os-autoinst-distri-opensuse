@@ -22,7 +22,7 @@ use warnings;
 use zypper;
 use testapi;
 use virtmanager;
-use utils 'zypper_call';
+
 
 sub run {
     my ($self) = @_;

@@ -22,7 +22,7 @@ use testapi;
 use YuiRestClient;
 use YaST::Module;
 use y2lan_restart_common 'close_xterm';
-use utils 'zypper_call';
+
 use x11utils 'start_root_shell_in_xterm';
 
 my $system_settings;

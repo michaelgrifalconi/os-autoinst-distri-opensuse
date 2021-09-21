@@ -18,7 +18,7 @@ use testapi;
 use x11test;
 use mm_network;
 use lockapi;
-use utils 'zypper_call';
+
 
 sub run {
     my ($self) = @_;

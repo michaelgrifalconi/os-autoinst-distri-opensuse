@@ -18,7 +18,7 @@ use warnings;
 use zypper;
 use testapi;
 use version_utils qw(is_sle is_opensuse is_staging);
-use utils 'zypper_call';
+
 use repo_tools 'get_repo_var_name';
 use y2_logs_helper qw(upload_autoyast_profile upload_autoyast_schema);
 

@@ -20,7 +20,7 @@ use strict;
 use warnings;
 use zypper;
 use testapi;
-use utils 'zypper_call';
+
 use version_utils qw(is_sle is_tumbleweed);
 
 sub run {

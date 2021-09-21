@@ -31,7 +31,7 @@ our @EXPORT = qw(
 );
 
 use testapi;
-use utils 'zypper_call';
+
 use opensusebasetest;
 use version_utils 'is_sle';
 

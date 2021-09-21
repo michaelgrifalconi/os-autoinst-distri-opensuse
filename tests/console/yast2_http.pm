@@ -22,7 +22,7 @@ use warnings;
 use zypper;
 use base "y2_module_consoletest";
 use testapi;
-use utils 'zypper_call';
+
 use version_utils qw(is_sle is_leap);
 use yast2_widget_utils 'change_service_configuration';
 

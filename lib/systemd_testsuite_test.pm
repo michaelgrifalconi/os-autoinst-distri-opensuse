@@ -22,7 +22,7 @@ use testapi;
 use Utils::Backends;
 use Utils::Architectures;
 use power_action_utils 'power_action';
-use utils 'zypper_call';
+
 use version_utils qw(is_opensuse is_sle is_tumbleweed);
 use bootloader_setup qw(change_grub_config grub_mkconfig);
 

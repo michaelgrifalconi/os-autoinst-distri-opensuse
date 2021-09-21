@@ -24,7 +24,7 @@ use warnings;
 use zypper;
 use testapi;
 use Utils::Architectures;
-use utils 'zypper_call';
+
 
 sub run {
     select_console 'root-console';

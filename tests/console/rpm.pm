@@ -29,7 +29,7 @@ use testapi;
 use strict;
 use warnings;
 use zypper;
-use utils 'zypper_call';
+
 use File::Basename 'basename';
 
 sub run {
