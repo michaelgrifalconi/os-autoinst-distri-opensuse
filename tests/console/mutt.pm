@@ -24,6 +24,7 @@
 use base 'consoletest';
 use strict;
 use warnings;
+use zypper;
 use testapi;
 use version_utils qw(is_sle);
 use utils;

@@ -22,6 +22,7 @@
 
 use base "consoletest";
 use warnings;
+use zypper;
 use strict;
 use testapi;
 use utils 'zypper_call';

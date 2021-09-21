@@ -17,6 +17,7 @@ use testapi;
 use utils;
 use strict;
 use warnings;
+use zypper;
 
 my $service_type = 'Systemd';
 my $nfs_server   = 'nfs-server';

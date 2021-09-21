@@ -21,6 +21,7 @@ use testapi;
 use utils;
 use strict;
 use warnings;
+use zypper;
 use version_utils qw(is_sle is_opensuse);
 use registration;
 

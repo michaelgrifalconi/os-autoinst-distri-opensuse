@@ -32,6 +32,7 @@ use testapi;
 use utils "zypper_call";
 use strict;
 use warnings;
+use zypper;
 
 sub run {
     select_console 'root-console';

@@ -22,6 +22,7 @@
 use base 'y2_module_basetest';
 use strict;
 use warnings;
+use zypper;
 use testapi;
 use utils;
 

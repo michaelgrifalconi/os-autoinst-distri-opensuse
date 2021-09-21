@@ -16,7 +16,8 @@ use strict;
 use warnings;
 use testapi;
 use lockapi;
-use utils qw(zypper_call systemctl exec_and_insert_password);
+use utils qw(systemctl exec_and_insert_password);
+use zypper;
 use hacluster;
 
 sub run {

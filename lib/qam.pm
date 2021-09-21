@@ -16,7 +16,8 @@ use base "Exporter";
 use Exporter;
 
 use testapi;
-use utils qw(zypper_call);
+
+use zypper;
 use JSON;
 use List::Util qw(max);
 use version_utils 'is_sle';

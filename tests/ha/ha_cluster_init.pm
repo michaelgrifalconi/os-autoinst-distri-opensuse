@@ -17,7 +17,8 @@ use warnings;
 use testapi qw(is_serial_terminal :DEFAULT);
 use lockapi;
 use hacluster;
-use utils qw(zypper_call clear_console file_content_replace);
+use utils qw(clear_console file_content_replace);
+use zypper;
 
 sub type_qnetd_pwd {
     if (is_serial_terminal()) {

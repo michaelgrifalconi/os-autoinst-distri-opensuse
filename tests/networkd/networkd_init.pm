@@ -13,6 +13,7 @@
 use base 'networkdbase';
 use strict;
 use warnings;
+use zypper;
 use testapi;
 use utils;
 use version_utils;

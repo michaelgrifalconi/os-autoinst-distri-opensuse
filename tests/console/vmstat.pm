@@ -21,6 +21,7 @@ use testapi;
 use utils;
 use strict;
 use warnings;
+use zypper;
 use POSIX;
 use registration qw(add_suseconnect_product get_addon_fullname);
 use List::Util qw(min);

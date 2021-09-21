@@ -26,7 +26,8 @@
 
 use Mojo::Base qw(consoletest);
 use XML::LibXML;
-use utils qw(systemctl zypper_call ensure_ca_certificates_suse_installed);
+use utils qw(systemctl  ensure_ca_certificates_suse_installed);
+use zypper;
 use version_utils qw(get_os_release);
 use containers::common;
 use testapi;

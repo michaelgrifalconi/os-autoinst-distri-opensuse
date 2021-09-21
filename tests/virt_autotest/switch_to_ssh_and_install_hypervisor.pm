@@ -23,7 +23,8 @@ use base 'virt_autotest_base';
 use testapi;
 use ipmi_backend_utils;
 use Utils::Backends qw(use_ssh_serial_console is_remote_backend);
-use utils qw(zypper_call systemctl permit_root_ssh_in_sol);
+use utils qw(systemctl permit_root_ssh_in_sol);
+use zypper;
 use virt_autotest::utils qw(is_kvm_host is_xen_host);
 
 sub run {

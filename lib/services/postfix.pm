@@ -17,6 +17,7 @@ use testapi;
 use utils;
 use strict;
 use warnings;
+use zypper;
 
 sub install_service {
     # mailx is used to send mail

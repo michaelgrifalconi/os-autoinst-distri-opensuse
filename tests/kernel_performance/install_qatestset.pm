@@ -15,6 +15,7 @@ use base 'y2_installbase';
 use power_action_utils 'power_action';
 use strict;
 use warnings;
+use zypper;
 use utils;
 use testapi;
 use Utils::Architectures;

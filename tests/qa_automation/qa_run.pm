@@ -14,6 +14,7 @@ package qa_run;
 
 use strict;
 use warnings;
+use zypper;
 use File::Basename;
 use base "opensusebasetest";
 use registration 'add_suseconnect_product';

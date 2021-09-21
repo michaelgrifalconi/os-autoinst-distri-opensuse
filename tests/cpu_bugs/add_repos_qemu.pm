@@ -13,6 +13,7 @@
 
 use strict;
 use warnings;
+use zypper;
 use base "consoletest";
 use bootloader_setup;
 use ipmi_backend_utils;

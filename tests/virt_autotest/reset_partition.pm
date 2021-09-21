@@ -18,7 +18,8 @@ use testapi;
 use virt_utils;
 use ipmi_backend_utils;
 use Utils::Architectures;
-use utils qw(zypper_call);
+
+use zypper;
 use version_utils 'is_sle';
 use virt_autotest::utils qw(is_xen_host);
 

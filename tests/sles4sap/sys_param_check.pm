@@ -17,7 +17,8 @@ use testapi;
 use strict;
 use warnings;
 use version_utils qw(is_sle);
-use utils qw(zypper_call);
+
+use zypper;
 use hacluster qw(is_package_installed);
 use kdump_utils qw(deactivate_kdump_cli);
 

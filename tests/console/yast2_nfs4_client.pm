@@ -25,7 +25,8 @@ use base "y2_module_consoletest";
 
 use strict;
 use warnings;
-use utils qw(zypper_call systemctl script_retry);
+use utils qw(systemctl script_retry);
+use zypper;
 use version_utils;
 use testapi;
 use lockapi;

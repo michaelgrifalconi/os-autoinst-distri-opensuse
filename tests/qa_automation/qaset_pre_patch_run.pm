@@ -37,6 +37,7 @@ package qaset_pre_patch_run;
 
 use strict;
 use warnings;
+use zypper;
 use base "qa_run";
 use testapi qw(is_serial_terminal :DEFAULT);
 use utils;

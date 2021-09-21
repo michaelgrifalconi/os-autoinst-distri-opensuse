@@ -19,6 +19,7 @@ VPN and connect.
 package Remote::Lab;
 use strict;
 use warnings;
+use zypper;
 use base 'Exporter';
 use Exporter;
 use registration 'add_suseconnect_product';

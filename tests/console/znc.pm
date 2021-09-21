@@ -13,7 +13,8 @@ use base 'consoletest';
 use strict;
 use warnings;
 use testapi;
-use utils qw(zypper_call systemctl);
+use utils qw(systemctl);
+use zypper;
 
 sub run {
     select_console('root-console');

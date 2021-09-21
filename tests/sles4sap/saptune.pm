@@ -17,6 +17,7 @@ use version_utils qw(is_sle is_upgrade);
 use Utils::Architectures;
 use strict;
 use warnings;
+use zypper;
 
 sub tuned_is {
     my $pattern = shift;

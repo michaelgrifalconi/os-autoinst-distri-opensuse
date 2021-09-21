@@ -18,6 +18,7 @@ use version_utils 'is_sle';
 use Utils::Architectures;
 use strict;
 use warnings;
+use zypper;
 
 sub reboot_wait {
     my ($self) = @_;

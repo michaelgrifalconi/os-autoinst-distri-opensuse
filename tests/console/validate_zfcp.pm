@@ -16,6 +16,7 @@
 
 use strict;
 use warnings;
+use zypper;
 use base "opensusebasetest";
 use testapi;
 use scheduler 'get_test_suite_data';

@@ -13,6 +13,7 @@
 package selenium;
 use 5.018;
 use warnings;
+use zypper;
 
 use base 'Exporter';
 use Exporter;

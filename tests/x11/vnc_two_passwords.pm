@@ -26,6 +26,7 @@
 use base "x11test";
 use strict;
 use warnings;
+use zypper;
 use testapi;
 use x11utils 'ensure_unlocked_desktop';
 use version_utils 'is_sle';

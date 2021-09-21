@@ -20,6 +20,7 @@
 
 use strict;
 use warnings;
+use zypper;
 use Mitigation;
 use base "consoletest";
 use bootloader_setup;

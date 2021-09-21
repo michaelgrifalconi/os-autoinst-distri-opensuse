@@ -19,6 +19,7 @@ use version_utils qw(is_sle is_upgrade);
 use main_common 'is_updates_tests';
 use strict;
 use warnings;
+use zypper;
 
 sub run {
     my ($self)      = @_;

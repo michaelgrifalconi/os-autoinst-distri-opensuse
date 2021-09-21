@@ -36,6 +36,7 @@
 
 use strict;
 use warnings;
+use zypper;
 use base 'basetest';
 use lockapi;
 use testapi;

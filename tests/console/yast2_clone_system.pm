@@ -15,6 +15,7 @@
 use base "y2_module_consoletest";
 use strict;
 use warnings;
+use zypper;
 use testapi;
 use version_utils qw(is_sle is_opensuse is_staging);
 use utils 'zypper_call';

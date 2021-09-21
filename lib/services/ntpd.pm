@@ -17,6 +17,7 @@ use testapi;
 use utils;
 use strict;
 use warnings;
+use zypper;
 
 # default ntp service type and name
 my $service_type = 'Systemd';

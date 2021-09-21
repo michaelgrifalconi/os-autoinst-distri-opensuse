@@ -16,7 +16,8 @@ use base "consoletest";
 use strict;
 use warnings;
 use testapi;
-use utils qw(quit_packagekit zypper_call);
+use utils qw(quit_packagekit);
+use zypper;
 
 sub run {
     my $val = get_var("ZYPPER_ADD_REPOS");

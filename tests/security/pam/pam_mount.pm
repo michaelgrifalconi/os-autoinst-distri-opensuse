@@ -21,6 +21,7 @@
 use base 'opensusebasetest';
 use strict;
 use warnings;
+use zypper;
 use testapi;
 use utils 'zypper_call';
 use utils 'script_run_interactive';

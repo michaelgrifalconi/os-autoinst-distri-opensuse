@@ -23,6 +23,7 @@
 use base "opensusebasetest";
 use strict;
 use warnings;
+use zypper;
 use utils;
 use testapi;
 use Utils::Architectures;

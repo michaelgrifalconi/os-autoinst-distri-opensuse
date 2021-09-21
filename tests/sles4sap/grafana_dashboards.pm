@@ -16,7 +16,8 @@ use strict;
 use warnings;
 use hacluster qw(get_my_ip);
 use registration;
-use utils qw(zypper_call systemctl);
+use utils qw(systemctl);
+use zypper;
 
 sub run {
     my ($self)      = @_;

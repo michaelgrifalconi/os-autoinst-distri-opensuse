@@ -19,6 +19,7 @@
 
 use strict;
 use warnings;
+use zypper;
 use base 'installbasetest';
 use testapi;
 use utils 'systemctl', 'zypper_call';

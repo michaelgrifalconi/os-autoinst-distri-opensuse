@@ -18,7 +18,8 @@
 # rckadmind service start, stop, restart, status
 
 use base 'consoletest';
-use utils qw(zypper_call systemctl script_retry);
+use utils qw(systemctl script_retry);
+use zypper;
 use strict;
 use warnings;
 use testapi;

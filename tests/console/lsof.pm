@@ -40,6 +40,7 @@ use base 'consoletest';
 use strict;
 use testapi;
 use warnings;
+use zypper;
 use utils 'zypper_call';
 
 sub run {

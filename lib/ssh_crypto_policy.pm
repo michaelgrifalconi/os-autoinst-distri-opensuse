@@ -16,6 +16,7 @@ use testapi;
 use utils;
 use strict;
 use warnings;
+use zypper;
 
 sub new() {
     my ($class, %args) = @_;

@@ -35,6 +35,7 @@
 use base 'qa_run';
 use strict;
 use warnings;
+use zypper;
 use lockapi;
 use testapi;
 use mmapi;

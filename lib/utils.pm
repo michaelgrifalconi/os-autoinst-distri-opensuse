@@ -20,6 +20,7 @@ use Exporter;
 
 use strict;
 use warnings;
+use zypper;
 use testapi qw(is_serial_terminal :DEFAULT);
 use lockapi 'mutex_wait';
 use mm_network;

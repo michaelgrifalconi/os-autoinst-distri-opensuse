@@ -38,6 +38,7 @@
 use base "consoletest";
 use strict;
 use warnings;
+use zypper;
 use testapi;
 use Utils::Architectures;
 use version_utils;

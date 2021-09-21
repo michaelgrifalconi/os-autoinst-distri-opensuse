@@ -39,7 +39,8 @@ use base 'y2_module_basetest';
 use strict;
 use warnings;
 use testapi;
-use utils qw(systemctl zypper_call);
+use utils qw(systemctl);
+use zypper;
 
 my $tmp_dir = "/my_nfs_tmp";
 my $bsc_dir = "/test_nfs_server_bsc";

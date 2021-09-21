@@ -25,7 +25,8 @@ use base 'opensusebasetest';
 use strict;
 use warnings;
 use testapi;
-use utils qw(zypper_call permit_root_ssh);
+use utils qw(permit_root_ssh);
+use zypper;
 use power_action_utils 'power_action';
 
 sub run {

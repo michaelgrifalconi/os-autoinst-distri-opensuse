@@ -32,6 +32,7 @@ package libssh;
 use base 'consoletest';
 use strict;
 use warnings;
+use zypper;
 use testapi;
 use utils;
 use Utils::Systemd 'disable_and_stop_service';

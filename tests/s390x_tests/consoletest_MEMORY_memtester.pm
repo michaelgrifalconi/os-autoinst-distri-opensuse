@@ -15,6 +15,7 @@ use base "s390base";
 use testapi;
 use utils;
 use warnings;
+use zypper;
 use strict;
 
 sub run {

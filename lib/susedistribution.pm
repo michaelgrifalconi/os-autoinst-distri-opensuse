@@ -3,6 +3,7 @@ use base 'distribution';
 use serial_terminal ();
 use strict;
 use warnings;
+use zypper;
 use Utils::Architectures;
 use utils qw(
   disable_serial_getty

@@ -28,6 +28,7 @@ use base 'consoletest';
 use testapi;
 use strict;
 use warnings;
+use zypper;
 use utils 'zypper_call';
 use Utils::Architectures;
 

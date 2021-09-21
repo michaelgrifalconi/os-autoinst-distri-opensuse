@@ -33,6 +33,7 @@
 use base "virt_feature_test_base";
 use strict;
 use warnings;
+use zypper;
 use utils;
 use testapi;
 use virt_autotest::common;

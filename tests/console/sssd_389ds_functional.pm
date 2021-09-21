@@ -31,6 +31,7 @@ use base 'consoletest';
 use testapi;
 use strict;
 use warnings;
+use zypper;
 use utils;
 use version_utils;
 use registration 'add_suseconnect_product';

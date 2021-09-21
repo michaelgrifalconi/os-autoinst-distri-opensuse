@@ -26,6 +26,7 @@ use base "opensusebasetest";
 
 use strict;
 use warnings;
+use zypper;
 use testapi;
 use registration;
 use utils 'zypper_call';

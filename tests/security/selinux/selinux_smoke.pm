@@ -24,6 +24,7 @@
 use base 'opensusebasetest';
 use strict;
 use warnings;
+use zypper;
 use testapi;
 use utils;
 use registration qw(add_suseconnect_product register_product);

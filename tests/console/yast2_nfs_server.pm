@@ -24,7 +24,8 @@ use strict;
 use warnings;
 
 use base "y2_module_consoletest";
-use utils qw(clear_console zypper_call systemctl);
+use utils qw(clear_console  systemctl);
+use zypper;
 use version_utils;
 use testapi;
 use lockapi;

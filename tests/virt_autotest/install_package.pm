@@ -12,6 +12,7 @@
 
 use strict;
 use warnings;
+use zypper;
 use base "virt_autotest_base";
 use virt_autotest::utils;
 use testapi;

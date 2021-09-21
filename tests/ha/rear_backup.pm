@@ -15,7 +15,8 @@ use base 'rear';
 use strict;
 use warnings;
 use testapi;
-use utils qw(file_content_replace quit_packagekit zypper_call);
+use utils qw(file_content_replace quit_packagekit);
+use zypper;
 
 sub run {
     my ($self)     = @_;

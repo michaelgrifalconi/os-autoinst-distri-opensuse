@@ -23,7 +23,8 @@ use base 'consoletest';
 use strict;
 use warnings;
 use testapi;
-use utils qw(zypper_call);
+
+use zypper;
 use version_utils qw(is_leap is_sle);
 
 sub wait_serial_or_die {

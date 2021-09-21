@@ -14,7 +14,8 @@ use base "opensusebasetest";
 use strict;
 use warnings;
 use testapi;
-use utils qw(zypper_call);
+
+use zypper;
 
 # Run preempt test
 sub run {

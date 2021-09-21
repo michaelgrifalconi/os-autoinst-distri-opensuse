@@ -31,7 +31,8 @@ use base 'y2_module_basetest';
 use strict;
 use warnings;
 use testapi;
-use utils qw(zypper_call);
+
+use zypper;
 
 sub run {
     select_console("root-console");

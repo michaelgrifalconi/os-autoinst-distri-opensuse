@@ -12,6 +12,7 @@
 
 use strict;
 use warnings;
+use zypper;
 use File::Basename;
 use IO::File;
 use Data::Dumper;

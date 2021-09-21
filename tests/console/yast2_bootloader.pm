@@ -19,6 +19,7 @@
 use strict;
 use base 'y2_module_consoletest';
 use warnings;
+use zypper;
 use testapi;
 use Utils::Architectures;
 use utils;

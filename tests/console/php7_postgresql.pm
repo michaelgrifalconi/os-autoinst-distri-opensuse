@@ -36,6 +36,7 @@
 use base "consoletest";
 use strict;
 use warnings;
+use zypper;
 use testapi;
 use utils 'zypper_call';
 use apachetest qw(setup_apache2 setup_pgsqldb test_pgsql destroy_pgsqldb postgresql_cleanup);

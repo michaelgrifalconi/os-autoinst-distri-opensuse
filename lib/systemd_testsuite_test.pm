@@ -16,6 +16,7 @@ use base "opensusebasetest";
 
 use strict;
 use warnings;
+use zypper;
 use known_bugs;
 use testapi;
 use Utils::Backends;

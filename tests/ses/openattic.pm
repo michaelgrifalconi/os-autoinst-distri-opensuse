@@ -13,6 +13,7 @@
 use base 'opensusebasetest';
 use strict;
 use warnings;
+use zypper;
 use testapi;
 use x11test;
 use mm_network;

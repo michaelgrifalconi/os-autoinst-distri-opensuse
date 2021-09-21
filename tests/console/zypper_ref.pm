@@ -19,7 +19,8 @@ use base "consoletest";
 use strict;
 use warnings;
 use testapi;
-use utils qw(zypper_call zypper_enable_install_dvd);
+use utils qw(zypper_enable_install_dvd);
+use zypper;
 use version_utils 'is_sle';
 
 sub run {

@@ -18,7 +18,8 @@ use testapi;
 use lockapi;
 use hacluster;
 use version_utils 'is_sle';
-use utils qw(systemctl file_content_replace zypper_call);
+use utils qw(systemctl file_content_replace);
+use zypper;
 
 sub run {
     # Exit of this module if we are in a maintenance update not related to samba

@@ -19,6 +19,7 @@
 use base 'basetest';
 use strict;
 use warnings;
+use zypper;
 use testapi;
 use virtmanager;
 use utils 'zypper_call';

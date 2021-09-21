@@ -24,6 +24,7 @@ use base "consoletest";
 use testapi;
 use strict;
 use warnings;
+use zypper;
 use utils;
 
 sub run {

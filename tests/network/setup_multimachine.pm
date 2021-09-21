@@ -16,7 +16,8 @@ use warnings;
 use testapi;
 use lockapi;
 use mm_network 'setup_static_mm_network';
-use utils qw(zypper_call permit_root_ssh);
+use utils qw(permit_root_ssh);
+use zypper;
 use Utils::Systemd qw(disable_and_stop_service systemctl);
 use version_utils qw(is_sle is_opensuse);
 

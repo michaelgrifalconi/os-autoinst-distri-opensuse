@@ -20,6 +20,7 @@
 
 use strict;
 use warnings;
+use zypper;
 
 use base "x11test";
 use testapi;

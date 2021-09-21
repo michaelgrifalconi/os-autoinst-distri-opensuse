@@ -10,6 +10,7 @@
 package klp;
 
 use warnings;
+use zypper;
 use strict;
 
 use Exporter 'import';

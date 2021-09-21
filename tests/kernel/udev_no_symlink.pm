@@ -17,7 +17,7 @@ use testapi;
 use utils 'zypper_call';
 use bootloader_setup 'add_grub_cmdline_settings';
 use power_action_utils 'power_action';
-
+use zypper;
 
 sub run {
     my ($self) = @_;

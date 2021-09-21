@@ -31,6 +31,7 @@ use virt_utils;
 use set_config_as_glue;
 use strict;
 use warnings;
+use zypper;
 use testapi;
 use utils;
 use version_utils 'is_sle';

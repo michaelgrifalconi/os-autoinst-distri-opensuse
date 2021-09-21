@@ -26,6 +26,7 @@ package enable_kdump;
 use strict;
 use 5.018;
 use warnings;
+use zypper;
 use base 'opensusebasetest';
 use utils 'zypper_call';
 use power_action_utils 'power_action';

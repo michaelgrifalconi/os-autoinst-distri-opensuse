@@ -17,7 +17,8 @@ use strict;
 use warnings;
 use base "opensusebasetest";
 use testapi;
-use utils qw(zypper_call);
+
+use zypper;
 use autoyast qw(expand_variables);
 use registration qw(add_suseconnect_product get_addon_fullname);
 

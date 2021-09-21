@@ -13,6 +13,7 @@
 
 use strict;
 use warnings;
+use zypper;
 use File::Basename 'basename';
 
 use base 'opensusebasetest';

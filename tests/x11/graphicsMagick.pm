@@ -15,6 +15,7 @@ use base 'x11test';
 use testapi;
 use strict;
 use warnings;
+use zypper;
 use utils 'zypper_call';
 
 sub run {

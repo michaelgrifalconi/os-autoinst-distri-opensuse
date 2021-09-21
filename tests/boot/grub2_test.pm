@@ -21,7 +21,8 @@ use warnings;
 use base 'opensusebasetest';
 use testapi;
 use bootloader_setup qw(stop_grub_timeout boot_grub_item);
-use utils qw(zypper_call zypper_ar);
+use utils qw(zypper_ar);
+use zypper;
 use version_utils 'is_sle';
 
 sub reboot {

@@ -21,7 +21,8 @@ use strict;
 use warnings;
 use version;
 use testapi;
-use utils qw(systemctl zypper_call);
+use utils qw(systemctl);
+use zypper;
 use Mojo::Util 'trim';
 
 my %package = (

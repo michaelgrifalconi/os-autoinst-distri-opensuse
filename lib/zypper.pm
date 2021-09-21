@@ -20,6 +20,7 @@ use Exporter;
 
 use strict;
 use warnings;
+use zypper;
 use testapi qw(is_serial_terminal :DEFAULT);
 use version_utils qw(is_microos is_leap is_sle is_sle12_hdd_in_upgrade is_storage_ng is_jeos);
 use Mojo::UserAgent;

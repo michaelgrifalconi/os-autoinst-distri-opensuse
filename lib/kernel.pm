@@ -11,6 +11,7 @@ use testapi;
 use utils;
 use version_utils 'is_sle';
 use warnings;
+use zypper;
 
 our @EXPORT_OK = qw(
   remove_kernel_packages

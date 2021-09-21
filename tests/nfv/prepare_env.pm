@@ -24,6 +24,7 @@ use testapi;
 use Utils::Backends;
 use strict;
 use warnings;
+use zypper;
 use utils;
 use lockapi;
 use mmapi;
