@@ -1233,7 +1233,7 @@ On ikvm|ipmi|spvm|pvm_hmc it's expected, that use_ssh_serial_console() has been 
 use root-ssh console directly.
 =cut
 sub select_serial_terminal {
-    my ($self, $root) = @_;
+    my ($root) = @_;
     $root //= 1;
 
     my $backend = get_required_var('BACKEND');

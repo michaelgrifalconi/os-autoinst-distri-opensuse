@@ -20,6 +20,7 @@ use Exporter;
 
 use strict;
 use warnings;
+use zypper;
 use testapi qw(is_serial_terminal :DEFAULT);
 use lockapi 'mutex_wait';
 use mm_network;
@@ -28,7 +29,7 @@ use Utils::Architectures;
 use Utils::Systemd qw(systemctl disable_and_stop_service);
 use Utils::Backends;
 use Mojo::UserAgent;
-use zypper qw(wait_quit_zypper);
+use zypper qw(wait_quit_zypper IN_ZYPPER_CALL zypper_call);
 
 our @EXPORT = qw(
   check_console_font
@@ -44,7 +45,6 @@ our @EXPORT = qw(
   integration_services_check_ip
   unlock_if_encrypted
   get_netboot_mirror
-  zypper_call
   zypper_enable_install_dvd
   zypper_ar
   fully_patch_system
@@ -73,7 +73,6 @@ our @EXPORT = qw(
   get_root_console_tty
   get_x11_console_tty
   OPENQA_FTP_URL
-  IN_ZYPPER_CALL
   arrays_differ
   arrays_subset
   ensure_serialdev_permissions
@@ -121,9 +120,6 @@ use constant VERY_SLOW_TYPING_SPEED => 4;
 
 # openQA internal ftp server url
 our $OPENQA_FTP_URL = "ftp://openqa.suse.de";
-
-# set flag IN_ZYPPER_CALL in zypper_call and unset when leaving
-our $IN_ZYPPER_CALL = 0;
 
 =head2 save_svirt_pty
 
@@ -513,89 +509,6 @@ Return the mirror URL eg from the C<MIRROR_HTTP> var if C<INSTALL_SOURCE> is set
 sub get_netboot_mirror {
     my $m_protocol = get_var('INSTALL_SOURCE', 'http');
     return get_var('MIRROR_' . uc($m_protocol));
-}
-
-=head2 zypper_call
-
- zypper_call($command [, exitcode => $exitcode] [, timeout => $timeout] [, log => $log] [, dumb_term => $dumb_term]);
-
-Function wrapping 'zypper -n' with allowed return code, timeout and logging facility.
-First parammeter is required command, all others are named and provided as hash
-for example:
-
- zypper_call("up", exitcode => [0,102,103], log => "zypper.log");
-
- # up        --> zypper -n up --> update system
- # exitcode  --> allowed return code values
- # log       --> capture log and store it in zypper.log
- # dumb_term --> pipes through cat if set to 1 and log is not set. This is a  workaround
- #               to get output without any ANSI characters in zypper before 1.14.1. See boo#1055315.
-
-C<dumb_term> will default to C<is_serial_terminal()>.
-=cut
-sub zypper_call {
-    my $command          = shift;
-    my %args             = @_;
-    my $allow_exit_codes = $args{exitcode} || [0];
-    my $timeout          = $args{timeout}  || 700;
-    my $log              = $args{log};
-    my $dumb_term        = $args{dumb_term} // is_serial_terminal;
-
-    my $printer = $log ? "| tee /tmp/$log" : $dumb_term ? '| cat' : '';
-    die 'Exit code is from PIPESTATUS[0], not grep' if $command =~ /^((?!`).)*\| ?grep/;
-
-    $IN_ZYPPER_CALL = 1;
-    # Retrying workarounds
-    my $ret;
-    my $search_conflicts = 'awk \'BEGIN {print "Processing conflicts - ",NR; group=0}
-                    /Solverrun finished with an ERROR/,/statistics/{ print group"|",
-                    $0; if ($0 ~ /statistics/ ){ print "EOL"; group++ }; }\'\
-                    /var/log/zypper.log
-                    ';
-    for (1 .. 5) {
-        $ret = script_run("zypper -n $command $printer; ( exit \${PIPESTATUS[0]} )", $timeout);
-        die "zypper did not finish in $timeout seconds" unless defined($ret);
-        if ($ret == 4) {
-            if (script_run('grep "Error code.*502" /var/log/zypper.log') == 0) {
-                die 'According to bsc#1070851 zypper should automatically retry internally. Bugfix missing for current product?';
-            } elsif (script_run('grep "Solverrun finished with an ERROR" /var/log/zypper.log') == 0) {
-                my $conflicts = script_output($search_conflicts);
-                record_info("Conflict", $conflicts, result => 'fail');
-                diag "Package conflicts found, not retrying anymore" if $conflicts;
-                last;
-            }
-            next unless get_var('FLAVOR', '') =~ /-(Updates|Incidents)$/;
-        }
-        if (get_var('FLAVOR', '') =~ /-(Updates|Incidents)/ && ($ret == 4 || $ret == 8 || $ret == 105 || $ret == 106 || $ret == 139 || $ret == 141)) {
-            if (script_run('grep "Exiting on SIGPIPE" /var/log/zypper.log') == 0) {
-                record_soft_failure 'Zypper exiting on SIGPIPE received during package download bsc#1145521';
-            }
-            else {
-                record_soft_failure 'Retry due to network problems poo#52319';
-            }
-            next;
-        }
-        last;
-    }
-    upload_logs("/tmp/$log") if $log;
-
-    unless (grep { $_ == $ret } @$allow_exit_codes) {
-        upload_logs('/var/log/zypper.log');
-        my $msg = "'zypper -n $command' failed with code $ret";
-        if ($ret == 104) {
-            $msg .= " (ZYPPER_EXIT_INF_CAP_NOT_FOUND)\n\nRelated zypper logs:\n";
-            script_run('tac /var/log/zypper.log | grep -F -m1 -B10000 "Hi, me zypper" | tac | grep \'\(SolverRequester.cc\|THROW\|CAUGHT\)\' > /tmp/z104.txt');
-            $msg .= script_output('cat /tmp/z104.txt');
-        }
-        else {
-            script_run('tac /var/log/zypper.log | grep -F -m1 -B10000 "Hi, me zypper" | tac | grep \'Exception.cc\' > /tmp/zlog.txt');
-            $msg .= "\n\nRelated zypper logs:\n";
-            $msg .= script_output('cat /tmp/zlog.txt');
-        }
-        die $msg;
-    }
-    $IN_ZYPPER_CALL = 0;
-    return $ret;
 }
 
 
