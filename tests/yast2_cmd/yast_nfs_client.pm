@@ -22,7 +22,8 @@ use base 'y2_module_basetest';
 use strict;
 use warnings;
 use testapi;
-use utils qw(systemctl zypper_call);
+use utils qw(systemctl);
+use zypper;
 use version_utils 'is_sle';
 
 sub run {

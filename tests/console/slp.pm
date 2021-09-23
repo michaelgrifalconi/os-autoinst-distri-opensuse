@@ -21,7 +21,8 @@ use base "consoletest";
 use testapi;
 use strict;
 use warnings;
-use utils qw(zypper_call systemctl script_retry);
+use utils qw(systemctl script_retry);
+use zypper;
 use Utils::Systemd 'disable_and_stop_service';
 
 sub run {

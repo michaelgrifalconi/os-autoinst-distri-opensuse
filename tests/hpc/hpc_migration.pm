@@ -24,6 +24,7 @@ use base 'hpcbase';
 use base 'hpc::migration';
 use strict;
 use warnings;
+use zypper;
 use testapi;
 use lockapi;
 use utils;

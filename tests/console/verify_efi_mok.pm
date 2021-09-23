@@ -13,7 +13,8 @@
 
 use Mojo::Base 'opensusebasetest';
 use testapi;
-use utils qw(zypper_call is_efi_boot);
+use utils qw(is_efi_boot);
+use zypper;
 use version_utils qw(is_leap is_opensuse is_sle is_jeos);
 use Utils::Architectures;
 use jeos qw(reboot_image set_grub_gfxmode);

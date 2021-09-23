@@ -22,6 +22,7 @@
 use base 'btrfs_test';
 use strict;
 use warnings;
+use zypper;
 use testapi;
 use utils;
 

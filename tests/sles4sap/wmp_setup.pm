@@ -12,7 +12,8 @@
 
 use base "sles4sap";
 use testapi;
-use utils qw(zypper_call);
+
+use zypper;
 use Utils::Systemd qw(systemctl);
 use version_utils qw(is_sle);
 use bootloader_setup qw(add_grub_cmdline_settings);

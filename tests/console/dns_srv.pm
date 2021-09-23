@@ -19,7 +19,8 @@ use warnings;
 use base "consoletest";
 use testapi;
 use Utils::Architectures;
-use utils qw(is_bridged_networking systemctl zypper_call);
+use utils qw(is_bridged_networking systemctl);
+use zypper;
 
 sub run {
     select_console 'root-console';

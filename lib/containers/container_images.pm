@@ -20,6 +20,7 @@ use testapi;
 use utils;
 use strict;
 use warnings;
+use zypper;
 use version_utils;
 use version;
 use containers::utils;

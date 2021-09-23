@@ -16,6 +16,7 @@ package Tomcat::ModjkTest;
 use base "x11test";
 use strict;
 use warnings;
+use zypper;
 use testapi;
 use utils;
 use version_utils 'is_sle';

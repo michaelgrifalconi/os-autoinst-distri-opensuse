@@ -15,8 +15,9 @@
 use base "consoletest";
 use strict;
 use warnings;
+use zypper;
 use testapi;
-use utils 'zypper_call';
+
 use version_utils 'is_upgrade';
 
 # Performing a DVD/Offline system upgrade cannot update

@@ -21,8 +21,9 @@
 use base "consoletest";
 use strict;
 use warnings;
+use zypper;
 use testapi;
-use utils 'zypper_call';
+
 use version_utils 'is_sle';
 use publiccloud::utils qw(is_publiccloud);
 

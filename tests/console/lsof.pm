@@ -40,7 +40,8 @@ use base 'consoletest';
 use strict;
 use testapi;
 use warnings;
-use utils 'zypper_call';
+use zypper;
+
 
 sub run {
     my ($self) = @_;

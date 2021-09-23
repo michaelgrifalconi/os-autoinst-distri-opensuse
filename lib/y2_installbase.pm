@@ -24,7 +24,8 @@ use Utils::Architectures;
 
 use version_utils qw(is_microos is_sle);
 use y2_logs_helper 'get_available_compression';
-use utils qw(type_string_slow zypper_call);
+use utils qw(type_string_slow);
+use zypper;
 use lockapi;
 use mmapi;
 

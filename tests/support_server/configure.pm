@@ -19,6 +19,7 @@
 use base 'consoletest';
 use strict;
 use warnings;
+use zypper;
 use testapi;
 use utils;
 use y2_module_basetest;

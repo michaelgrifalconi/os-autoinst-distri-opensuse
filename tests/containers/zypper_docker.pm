@@ -25,6 +25,7 @@ use utils;
 use version_utils 'get_os_release';
 use strict;
 use warnings;
+use zypper;
 use containers::common;
 
 sub run {

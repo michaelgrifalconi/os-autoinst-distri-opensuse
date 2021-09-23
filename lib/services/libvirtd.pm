@@ -17,6 +17,7 @@ use testapi;
 use utils;
 use strict;
 use warnings;
+use zypper;
 
 #default guest vm params
 our %guest_params = (

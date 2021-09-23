@@ -18,7 +18,8 @@ use strict;
 use warnings;
 use testapi;
 use network_utils 'ifc_exists';
-use utils qw(file_content_replace zypper_call);
+use utils qw(file_content_replace);
+use zypper;
 
 
 sub run {

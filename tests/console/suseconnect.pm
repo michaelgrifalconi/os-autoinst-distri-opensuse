@@ -18,8 +18,9 @@
 use base "consoletest";
 use strict;
 use warnings;
+use zypper;
 use testapi;
-use utils 'zypper_call';
+
 use registration;
 use version_utils 'is_sle';
 

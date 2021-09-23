@@ -16,9 +16,10 @@
 use base 'x11test';
 use strict;
 use warnings;
+use zypper;
 use testapi;
 use repo_tools;
-use utils 'zypper_call';
+
 use x11utils 'turn_off_gnome_screensaver';
 
 sub run {

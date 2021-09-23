@@ -26,6 +26,7 @@ use testapi;
 use utils;
 use strict;
 use warnings;
+use zypper;
 
 sub run {
     my ($self) = @_;

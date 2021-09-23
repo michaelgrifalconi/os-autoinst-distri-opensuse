@@ -20,6 +20,7 @@ use testapi;
 use utils;
 use strict;
 use warnings;
+use zypper;
 
 my $service      = 'firewalld';
 my $service_type = 'Systemd';

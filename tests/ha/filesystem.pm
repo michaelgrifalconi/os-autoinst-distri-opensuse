@@ -14,7 +14,8 @@
 use base 'opensusebasetest';
 use strict;
 use warnings;
-use utils 'zypper_call';
+use zypper;
+
 use testapi;
 use lockapi;
 use hacluster;

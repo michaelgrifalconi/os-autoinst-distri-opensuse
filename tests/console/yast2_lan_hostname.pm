@@ -14,6 +14,7 @@
 use parent "y2_module_consoletest";
 use strict;
 use warnings;
+use zypper;
 use testapi;
 use utils;
 use version_utils ':VERSION';

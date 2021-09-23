@@ -26,9 +26,10 @@ use base "opensusebasetest";
 
 use strict;
 use warnings;
+use zypper;
 use testapi;
 use registration;
-use utils 'zypper_call';
+
 
 sub register_system_and_add_extension {
     wait_screen_change { type_string get_var "SCC_EMAIL" };

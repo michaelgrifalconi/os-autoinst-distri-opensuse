@@ -12,9 +12,10 @@
 
 use strict;
 use warnings;
+use zypper;
 use base "opensusebasetest";
 use testapi;
-use utils 'zypper_call';
+
 use version_utils 'is_leap';
 
 sub run {

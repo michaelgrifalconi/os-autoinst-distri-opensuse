@@ -35,7 +35,8 @@ use strict;
 use warnings;
 use testapi;
 use lockapi;
-use utils qw(script_retry zypper_call);
+use utils qw(script_retry);
+use zypper;
 
 sub run {
     barrier_create('SALT_MINIONS_READY', 2);

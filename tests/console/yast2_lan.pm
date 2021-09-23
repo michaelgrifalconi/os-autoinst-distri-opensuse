@@ -24,6 +24,7 @@ use base "y2_module_consoletest";
 
 use strict;
 use warnings;
+use zypper;
 use testapi;
 use utils;
 use y2lan_restart_common;

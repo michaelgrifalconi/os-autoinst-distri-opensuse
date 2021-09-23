@@ -16,6 +16,7 @@ use virt_autotest::common;
 use virt_autotest::utils;
 use strict;
 use warnings;
+use zypper;
 use testapi;
 use utils;
 use version_utils 'is_sle';

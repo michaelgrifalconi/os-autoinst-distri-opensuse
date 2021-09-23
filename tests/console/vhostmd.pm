@@ -21,7 +21,8 @@ use warnings;
 use base 'consoletest';
 use strict;
 use testapi;
-use utils qw(systemctl zypper_call);
+use utils qw(systemctl);
+use zypper;
 
 sub run {
     my ($self) = @_;

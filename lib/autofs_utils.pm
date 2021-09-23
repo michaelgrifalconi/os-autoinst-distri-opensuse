@@ -9,7 +9,8 @@ use Exporter 'import';
 use strict;
 use warnings;
 use testapi;
-use utils qw(zypper_call common_service_action);
+use utils qw(common_service_action);
+use zypper;
 use version_utils qw(is_sle is_jeos);
 
 our @EXPORT = qw(setup_autofs_server check_autofs_service

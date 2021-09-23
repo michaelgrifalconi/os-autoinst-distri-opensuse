@@ -22,6 +22,7 @@
 use base 'apparmortest';
 use strict;
 use warnings;
+use zypper;
 use testapi;
 use utils;
 

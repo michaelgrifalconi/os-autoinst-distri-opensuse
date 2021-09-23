@@ -24,6 +24,7 @@
 use base "installbasetest";
 use strict;
 use warnings;
+use zypper;
 use testapi;
 use utils;
 use scheduler 'get_test_suite_data';

@@ -22,6 +22,7 @@ use base 'consoletest';
 use testapi;
 use strict;
 use warnings;
+use zypper;
 use utils;
 use lockapi;
 use Utils::Systemd qw(systemctl disable_and_stop_service);

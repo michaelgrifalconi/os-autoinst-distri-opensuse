@@ -25,6 +25,7 @@ use Exporter;
 
 use strict;
 use warnings;
+use zypper;
 use utils;
 use upload_system_log 'upload_supportconfig_log';
 use version_utils;

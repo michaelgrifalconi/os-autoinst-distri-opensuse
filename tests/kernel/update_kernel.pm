@@ -14,6 +14,7 @@
 
 use 5.018;
 use warnings;
+use zypper;
 use strict;
 use base 'opensusebasetest';
 use testapi;

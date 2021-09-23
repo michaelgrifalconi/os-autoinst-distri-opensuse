@@ -17,7 +17,8 @@ use Mojo::Base 'wickedbase';
 use utils qw(random_string);
 use version_utils qw(is_sle);
 use repo_tools qw(add_qa_head_repo generate_version);
-use utils qw(zypper_call);
+
+use zypper;
 use Mojo::File 'path';
 use Mojo::Util qw(b64_encode b64_decode sha1_sum trim);
 use Encode qw/encode_utf8/;

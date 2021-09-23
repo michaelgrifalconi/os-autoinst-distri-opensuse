@@ -29,7 +29,8 @@ use base 'btrfs_test';
 use testapi;
 use strict;
 use warnings;
-use utils 'zypper_call';
+use zypper;
+
 
 sub run {
     my ($self) = @_;

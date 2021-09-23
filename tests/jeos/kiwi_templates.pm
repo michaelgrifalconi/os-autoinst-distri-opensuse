@@ -15,7 +15,8 @@ use strict;
 use warnings;
 use testapi;
 use version_utils qw(is_sle is_leap);
-use utils qw(zypper_call);
+
+use zypper;
 
 sub run {
     select_console 'root-console';

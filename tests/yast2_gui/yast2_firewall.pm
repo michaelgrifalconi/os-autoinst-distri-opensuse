@@ -16,6 +16,7 @@
 use base "y2_module_guitest";
 use strict;
 use warnings;
+use zypper;
 use testapi;
 use utils;
 use version_utils qw(is_sle is_leap is_tumbleweed);

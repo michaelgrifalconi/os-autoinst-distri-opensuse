@@ -26,7 +26,8 @@ use base "consoletest";
 use strict;
 use warnings;
 use testapi;
-use utils qw(zypper_call quit_packagekit systemctl);
+use utils qw(quit_packagekit systemctl);
+use zypper;
 use version_utils qw(is_jeos is_opensuse);
 use registration 'add_suseconnect_product';
 

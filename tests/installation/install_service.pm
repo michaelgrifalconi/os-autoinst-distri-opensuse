@@ -19,9 +19,10 @@
 
 use strict;
 use warnings;
+use zypper;
 use base 'installbasetest';
 use testapi;
-use utils 'systemctl', 'zypper_call';
+use utils 'systemctl';
 use service_check;
 use version_utils qw(is_hyperv is_sle is_sles4sap);
 use main_common 'is_desktop';

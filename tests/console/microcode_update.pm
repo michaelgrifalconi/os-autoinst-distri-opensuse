@@ -14,9 +14,10 @@
 
 use strict;
 use warnings;
+use zypper;
 use base 'consoletest';
 use testapi;
-use utils 'zypper_call';
+
 use Utils::Backends 'use_ssh_serial_console';
 
 sub run {

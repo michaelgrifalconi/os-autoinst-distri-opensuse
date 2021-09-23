@@ -17,7 +17,8 @@ use warnings;
 use testapi qw(is_serial_terminal :DEFAULT);
 use lockapi;
 use hacluster;
-use utils qw(zypper_call);
+
+use zypper;
 
 sub wait_for_password_prompt {
     my %args = @_;

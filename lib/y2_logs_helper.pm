@@ -2,10 +2,11 @@ package y2_logs_helper;
 use testapi;
 use strict;
 use warnings;
+use zypper;
 use version_utils qw(is_sle);
 use ipmi_backend_utils;
 use network_utils;
-use utils 'zypper_call';
+
 use Exporter 'import';
 use Utils::Architectures;
 

@@ -20,7 +20,8 @@ use warnings;
 use base 'consoletest';
 use strict;
 use testapi;
-use utils qw(systemctl zypper_call);
+use utils qw(systemctl);
+use zypper;
 use services::rpcbind;
 
 sub run {

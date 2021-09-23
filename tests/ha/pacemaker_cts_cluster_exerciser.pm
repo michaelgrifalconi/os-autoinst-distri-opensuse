@@ -18,7 +18,8 @@ use warnings;
 use Mojo::JSON 'encode_json';
 use lockapi;
 use testapi;
-use utils qw(systemctl zypper_call exec_and_insert_password);
+use utils qw(systemctl  exec_and_insert_password);
+use zypper;
 use hacluster;
 
 sub run {

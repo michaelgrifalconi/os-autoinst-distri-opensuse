@@ -20,9 +20,10 @@
 use base 'opensusebasetest';
 use strict;
 use warnings;
+use zypper;
 use testapi;
 use registration qw(add_suseconnect_product remove_suseconnect_product);
-use utils 'zypper_call';
+
 
 sub run {
     my $self = shift;

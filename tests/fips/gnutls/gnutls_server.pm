@@ -23,7 +23,8 @@ use base "consoletest";
 use testapi;
 use strict;
 use warnings;
-use utils qw(zypper_call);
+
+use zypper;
 
 sub run {
     select_console "root-console";

@@ -14,6 +14,7 @@ package y2_base;
 use base 'opensusebasetest';
 use strict;
 use warnings;
+use zypper;
 
 use ipmi_backend_utils;
 use network_utils;

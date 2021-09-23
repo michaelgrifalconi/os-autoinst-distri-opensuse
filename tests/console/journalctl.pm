@@ -25,7 +25,8 @@
 use Mojo::Base qw(consoletest);
 use Date::Parse qw(str2time);
 use testapi;
-use utils qw(zypper_call script_retry systemctl);
+use utils qw(script_retry systemctl);
+use zypper;
 use version_utils qw(is_opensuse is_tumbleweed is_sle is_public_cloud is_leap);
 use Utils::Backends qw(is_hyperv);
 use Utils::Architectures;

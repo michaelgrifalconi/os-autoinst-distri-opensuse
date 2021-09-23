@@ -24,10 +24,11 @@
 
 use strict;
 use warnings;
+use zypper;
 use base "y2_module_consoletest";
 
 use testapi;
-use utils 'zypper_call';
+
 use version_utils 'is_sle';
 
 sub run() {

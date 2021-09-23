@@ -24,6 +24,7 @@ use testapi;
 use utils;
 use strict;
 use warnings;
+use zypper;
 use version_utils qw(is_sle is_leap is_tumbleweed);
 use registration qw(add_suseconnect_product register_product);
 

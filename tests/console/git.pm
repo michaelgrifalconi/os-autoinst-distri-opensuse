@@ -23,7 +23,8 @@ use base "consoletest";
 use strict;
 use warnings;
 use testapi;
-use utils qw(zypper_call);
+
+use zypper;
 
 sub run {
     my $username = $testapi::username;

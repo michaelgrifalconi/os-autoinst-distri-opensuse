@@ -22,7 +22,8 @@ use warnings;
 use testapi;
 use known_bugs;
 
-use utils qw(zypper_call systemctl);
+use utils qw(systemctl);
+use zypper;
 
 sub master_prepare {
     # Install the salt master

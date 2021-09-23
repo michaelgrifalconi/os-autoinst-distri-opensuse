@@ -20,7 +20,8 @@ use testapi;
 use lockapi;
 use y2_module_guitest;
 use mm_network;
-use utils qw(systemctl zypper_call exec_and_insert_password script_retry);
+use utils qw(systemctl  exec_and_insert_password script_retry);
+use zypper;
 use strict;
 use warnings;
 

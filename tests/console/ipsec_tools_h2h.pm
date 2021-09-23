@@ -14,6 +14,7 @@
 
 use strict;
 use warnings;
+use zypper;
 use base "consoletest";
 use lockapi;
 use testapi;

@@ -28,7 +28,8 @@ use base 'consoletest';
 use testapi;
 use strict;
 use warnings;
-use utils 'zypper_call';
+use zypper;
+
 use version_utils 'is_sle';
 
 sub run {

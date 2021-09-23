@@ -17,6 +17,7 @@
 
 use strict;
 use warnings;
+use zypper;
 use base "opensusebasetest";
 use testapi;
 use version_utils qw(is_staging is_opensuse is_leap);

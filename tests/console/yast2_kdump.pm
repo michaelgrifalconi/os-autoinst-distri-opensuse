@@ -14,6 +14,7 @@
 use base "y2_module_consoletest";
 use strict;
 use warnings;
+use zypper;
 
 use cfg_files_utils 'validate_cfg_file';
 use kdump_utils;

@@ -21,6 +21,7 @@
 
 use strict;
 use warnings;
+use zypper;
 use base "consoletest";
 use testapi;
 use utils;

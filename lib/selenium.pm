@@ -13,6 +13,7 @@
 package selenium;
 use 5.018;
 use warnings;
+use zypper;
 
 use base 'Exporter';
 use Exporter;
@@ -30,7 +31,7 @@ our @EXPORT = qw(
 );
 
 use testapi;
-use utils 'zypper_call';
+
 use opensusebasetest;
 use version_utils 'is_sle';
 

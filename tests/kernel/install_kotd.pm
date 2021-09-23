@@ -13,6 +13,7 @@
 
 use 5.018;
 use warnings;
+use zypper;
 use base "opensusebasetest";
 use testapi;
 use Utils::Backends;

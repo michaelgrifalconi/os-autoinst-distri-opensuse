@@ -16,7 +16,8 @@ use strict;
 use warnings;
 use testapi;
 use lockapi;
-use utils qw(zypper_call systemctl);
+use utils qw(systemctl);
+use zypper;
 use hacluster;
 
 sub run {

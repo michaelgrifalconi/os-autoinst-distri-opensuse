@@ -16,7 +16,8 @@ use strict;
 use warnings;
 use lockapi;
 use Utils::Systemd qw(systemctl);
-use utils qw(file_content_replace zypper_call);
+use utils qw(file_content_replace);
+use zypper;
 use hacluster qw(add_file_in_csync get_cluster_name get_hostname is_node wait_until_resources_started);
 
 sub configure_ha_exporter {

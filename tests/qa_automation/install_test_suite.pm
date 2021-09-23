@@ -12,6 +12,7 @@
 
 use strict;
 use warnings;
+use zypper;
 use base "opensusebasetest";
 use utils;
 use testapi;

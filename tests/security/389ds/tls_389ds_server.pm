@@ -23,6 +23,7 @@ use base 'consoletest';
 use testapi;
 use strict;
 use warnings;
+use zypper;
 use utils;
 use lockapi;
 use mmapi 'wait_for_children';

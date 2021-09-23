@@ -15,7 +15,8 @@ use strict;
 use warnings;
 use base "consoletest";
 use testapi;
-use utils qw(systemctl zypper_call);
+use utils qw(systemctl);
+use zypper;
 use version_utils qw(is_sle is_leap);
 
 sub uses_iptables {

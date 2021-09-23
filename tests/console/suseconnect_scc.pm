@@ -21,7 +21,8 @@
 
 use Mojo::Base qw(consoletest);
 use testapi;
-use utils qw(zypper_call);
+
+use zypper;
 use version_utils qw(is_sle is_jeos is_sle_micro);
 use registration qw(register_addons_cmd verify_scc investigate_log_empty_license);
 

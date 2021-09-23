@@ -12,7 +12,8 @@
 
 use Mojo::Base qw(opensusebasetest);
 use testapi qw(select_console assert_script_run get_var);
-use utils qw(zypper_call);
+
+use zypper;
 use power_action_utils qw(power_action);
 
 sub run {

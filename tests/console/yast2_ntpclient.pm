@@ -16,7 +16,8 @@ use warnings;
 use base "y2_module_consoletest";
 
 use testapi;
-use utils qw(enter_cmd_slow zypper_call systemctl);
+use utils qw(enter_cmd_slow  systemctl);
+use zypper;
 use version_utils qw(is_sle is_leap);
 
 sub run {

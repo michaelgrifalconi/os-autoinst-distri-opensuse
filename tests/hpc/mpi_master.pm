@@ -16,6 +16,7 @@ use base 'hpcbase';
 use base 'hpc::utils';
 use strict;
 use warnings;
+use zypper;
 use testapi;
 use lockapi;
 use utils;

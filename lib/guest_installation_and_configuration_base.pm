@@ -23,6 +23,7 @@ package guest_installation_and_configuration_base;
 use base "opensusebasetest";
 use strict;
 use warnings;
+use zypper;
 use POSIX;
 use File::Basename;
 use Net::SSH2;

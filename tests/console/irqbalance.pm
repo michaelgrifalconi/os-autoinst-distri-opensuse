@@ -15,7 +15,8 @@ use warnings;
 use base "consoletest";
 use strict;
 use testapi qw(is_serial_terminal :DEFAULT);
-use utils qw(systemctl zypper_call clear_console);
+use utils qw(systemctl  clear_console);
+use zypper;
 
 sub run {
     my $self = shift;

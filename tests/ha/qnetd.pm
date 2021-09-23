@@ -18,7 +18,8 @@ use warnings;
 use testapi;
 use lockapi;
 use hacluster;
-use utils qw(zypper_call exec_and_insert_password);
+use utils qw(exec_and_insert_password);
+use zypper;
 
 sub handle_diskless_sbd_scenario_cluster_node {
     my $cluster_name = get_cluster_name;

@@ -33,6 +33,7 @@ use testapi;
 use utils;
 use strict;
 use warnings;
+use zypper;
 use containers::common;
 use version_utils qw(is_sle is_leap is_tumbleweed is_jeos get_os_release);
 use containers::utils;

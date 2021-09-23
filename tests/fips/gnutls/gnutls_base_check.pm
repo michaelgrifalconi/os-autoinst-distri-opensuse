@@ -23,7 +23,8 @@ use base 'consoletest';
 use testapi;
 use strict;
 use warnings;
-use utils 'zypper_call';
+use zypper;
+
 use version_utils qw(is_tumbleweed);
 
 sub run {

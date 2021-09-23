@@ -18,8 +18,9 @@
 use base "consoletest";
 use strict;
 use warnings;
+use zypper;
 use testapi;
-use utils 'zypper_call';
+
 use web_browser qw(setup_web_browser_env run_web_browser_text_based);
 
 sub run {

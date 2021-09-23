@@ -22,8 +22,9 @@
 use strict;
 use base 'consoletest';
 use warnings;
+use zypper;
 use testapi;
-use utils 'zypper_call';
+
 use scheduler 'get_test_suite_data';
 
 sub run {

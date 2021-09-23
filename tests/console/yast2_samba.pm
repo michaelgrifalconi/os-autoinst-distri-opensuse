@@ -13,6 +13,7 @@
 
 use strict;
 use warnings;
+use zypper;
 use base "y2_module_consoletest";
 
 use testapi;

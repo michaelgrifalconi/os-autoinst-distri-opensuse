@@ -26,7 +26,8 @@ use strict;
 use warnings;
 use testapi;
 use lockapi;
-use utils qw(zypper_call systemctl script_retry);
+use utils qw(systemctl script_retry);
+use zypper;
 use mm_network 'setup_static_mm_network';
 use nfs_common;
 

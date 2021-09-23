@@ -17,6 +17,7 @@ use Utils::Architectures;
 use utils;
 use strict;
 use warnings;
+use zypper;
 use power_action_utils qw(power_action);
 
 

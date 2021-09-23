@@ -18,6 +18,7 @@ use testapi;
 use utils;
 use version_utils 'is_sle';
 use warnings;
+use zypper;
 use strict;
 
 sub install_service {

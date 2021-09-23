@@ -47,6 +47,7 @@
 package xen_mitigations;
 use strict;
 use warnings;
+use zypper;
 use base "consoletest";
 use bootloader_setup;
 use Mitigation;

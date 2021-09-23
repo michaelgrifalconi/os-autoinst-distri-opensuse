@@ -16,7 +16,8 @@ use base "y2_module_consoletest";
 use strict;
 use warnings;
 use testapi;
-use utils qw(zypper_call systemctl);
+use utils qw(systemctl);
+use zypper;
 use repo_tools 'prepare_source_repo';
 
 # Executes the command line tests from a yast repository (in master or in the

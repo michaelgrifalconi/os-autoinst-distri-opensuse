@@ -16,8 +16,9 @@
 use base "opensusebasetest";
 use strict;
 use warnings;
+use zypper;
 use testapi;
-use utils 'zypper_call';
+
 
 sub run {
     zypper_call 'in rt-tests ibmrtpkgs', log => 'rt_tests_zypper.log';

@@ -14,6 +14,7 @@
 use base 'opensusebasetest';
 use strict;
 use warnings;
+use zypper;
 use testapi;
 use utils;
 use repo_tools 'add_qa_head_repo';

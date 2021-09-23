@@ -13,7 +13,8 @@
 use base "sles4sap";
 use testapi;
 use File::Basename qw(basename);
-use utils qw(zypper_call file_content_replace);
+use utils qw(file_content_replace);
+use zypper;
 use version_utils qw(is_sle);
 use strict;
 use warnings;

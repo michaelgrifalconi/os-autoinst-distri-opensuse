@@ -12,6 +12,7 @@
 # Maintainer: An Long <lan@suse.com>
 use strict;
 use warnings;
+use zypper;
 use base 'opensusebasetest';
 use File::Basename;
 use testapi;

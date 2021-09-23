@@ -12,6 +12,7 @@
 # Maintainer: Richard Palethorpe <rpalethorpe@suse.com>
 use 5.018;
 use warnings;
+use zypper;
 use base "opensusebasetest";
 use testapi;
 use utils;

@@ -17,6 +17,7 @@
 use base 'consoletest';
 use registration;
 use warnings;
+use zypper;
 use testapi;
 use strict;
 use utils;

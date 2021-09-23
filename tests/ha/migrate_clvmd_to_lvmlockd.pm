@@ -14,7 +14,8 @@
 use base 'opensusebasetest';
 use strict;
 use warnings;
-use utils qw(zypper_call systemctl zypper_enable_install_dvd);
+use utils qw(systemctl zypper_enable_install_dvd);
+use zypper;
 use testapi;
 use lockapi;
 use hacluster;

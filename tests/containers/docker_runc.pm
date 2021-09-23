@@ -23,6 +23,7 @@ use version_utils qw(is_leap is_sle get_os_release);
 use containers::common;
 use strict;
 use warnings;
+use zypper;
 
 sub run {
     my ($self) = @_;

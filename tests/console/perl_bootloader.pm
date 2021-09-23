@@ -16,7 +16,8 @@ use base 'opensusebasetest';
 use testapi;
 use strict;
 use warnings;
-use utils 'zypper_call';
+use zypper;
+
 use power_action_utils 'power_action';
 use version_utils 'is_sle';
 

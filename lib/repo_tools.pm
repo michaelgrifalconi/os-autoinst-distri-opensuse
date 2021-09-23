@@ -62,6 +62,7 @@ use Exporter;
 use base "x11test";
 use strict;
 use warnings;
+use zypper;
 use testapi;
 use utils;
 use version_utils qw(is_leap is_sle is_tumbleweed);

@@ -28,6 +28,7 @@ use utils;
 use strict;
 use Data::Dumper;
 use warnings;
+use zypper;
 use registration;
 
 my @diffpkg;

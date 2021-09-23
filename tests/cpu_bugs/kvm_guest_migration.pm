@@ -12,6 +12,7 @@
 
 use strict;
 use warnings;
+use zypper;
 use base "consoletest";
 use Mitigation;
 use bootloader_setup;

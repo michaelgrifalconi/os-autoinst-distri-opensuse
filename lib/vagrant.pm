@@ -2,6 +2,7 @@ package vagrant;
 use testapi;
 use strict;
 use warnings;
+use zypper;
 use utils;
 
 our @ISA    = qw(Exporter);

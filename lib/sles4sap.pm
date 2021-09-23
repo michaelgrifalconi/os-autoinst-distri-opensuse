@@ -25,7 +25,8 @@ use power_action_utils qw(power_action);
 use Utils::Backends;
 use registration qw(add_suseconnect_product);
 use version_utils qw(is_sle);
-use utils qw(zypper_call);
+
+use zypper;
 use Utils::Systemd qw(systemctl);
 
 our @EXPORT = qw(

@@ -21,7 +21,8 @@ use strict;
 use warnings;
 use base "y2_module_consoletest";
 use testapi;
-use utils qw(zypper_call systemctl);
+use utils qw(systemctl);
+use zypper;
 use version_utils qw(is_pre_15 is_sle is_opensuse is_leap);
 
 sub install_extra_packages_requested {

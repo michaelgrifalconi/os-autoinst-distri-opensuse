@@ -17,6 +17,7 @@ use testapi;
 use utils;
 use strict;
 use warnings;
+use zypper;
 
 sub install_service {
     zypper_call('in apache2 apache2-utils');

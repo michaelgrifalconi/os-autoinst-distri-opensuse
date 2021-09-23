@@ -22,6 +22,7 @@ use base "consoletest";
 use testapi;
 use strict;
 use warnings;
+use zypper;
 use utils;
 use version_utils qw(is_sle is_tumbleweed is_leap get_os_release);
 use registration;

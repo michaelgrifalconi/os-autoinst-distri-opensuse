@@ -14,6 +14,7 @@ package lock_package;
 use base "consoletest";
 use strict;
 use warnings;
+use zypper;
 use testapi;
 use utils;
 

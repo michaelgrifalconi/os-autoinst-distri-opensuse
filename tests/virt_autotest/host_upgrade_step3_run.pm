@@ -17,6 +17,7 @@ use utils "zypper_call";
 use virt_utils;
 use strict;
 use warnings;
+use zypper;
 use Utils::Architectures;
 use version_utils 'is_sle';
 

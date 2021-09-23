@@ -25,6 +25,7 @@ use utils;
 use base 'opensusebasetest';
 use strict;
 use warnings;
+use zypper;
 use services::apache;
 use services::apparmor;
 use services::dhcpd;

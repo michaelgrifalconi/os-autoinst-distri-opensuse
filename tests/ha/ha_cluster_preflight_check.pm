@@ -16,7 +16,8 @@ use warnings;
 use testapi;
 use lockapi;
 use hacluster qw(check_cluster_state get_cluster_name get_node_index get_node_number ha_export_logs);
-use utils qw(zypper_call);
+
+use zypper;
 use Mojo::JSON qw(encode_json);
 
 our $dir_log = '/var/lib/crmsh/preflight_check/';

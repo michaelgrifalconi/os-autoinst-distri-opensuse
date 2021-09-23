@@ -16,7 +16,8 @@ use base "installbasetest";
 use strict;
 use warnings;
 use testapi;
-use utils qw(OPENQA_FTP_URL zypper_call);
+use utils qw(OPENQA_FTP_URL);
+use zypper;
 
 sub run {
     my $self = shift;

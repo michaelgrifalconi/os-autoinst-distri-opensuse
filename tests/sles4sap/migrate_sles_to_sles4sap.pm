@@ -17,6 +17,7 @@
 use base 'sles4sap';
 use strict;
 use warnings;
+use zypper;
 use testapi;
 use utils;
 use version_utils 'is_sle';

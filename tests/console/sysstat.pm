@@ -18,7 +18,8 @@
 # Maintainer: Sergio Rafael Lemke <slemke@suse.cz>
 
 use base 'consoletest';
-use utils qw(zypper_call systemctl);
+use utils qw(systemctl);
+use zypper;
 use Utils::Architectures;
 use version_utils qw(is_sle is_leap is_opensuse);
 use strict;

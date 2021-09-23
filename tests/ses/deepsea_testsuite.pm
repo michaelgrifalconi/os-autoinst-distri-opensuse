@@ -16,7 +16,8 @@ use warnings;
 use testapi;
 use mm_network;
 use lockapi;
-use utils qw(systemctl zypper_call);
+use utils qw(systemctl);
+use zypper;
 use version_utils 'is_sle';
 
 sub run {

@@ -22,9 +22,10 @@
 
 use base "consoletest";
 use warnings;
+use zypper;
 use strict;
 use testapi;
-use utils 'zypper_call';
+
 use power_action_utils 'power_action';
 use version_utils 'is_sle';
 

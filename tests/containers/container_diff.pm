@@ -16,6 +16,7 @@ use testapi;
 use utils;
 use strict;
 use warnings;
+use zypper;
 use containers::common;
 use containers::container_images;
 use containers::urls 'get_suse_container_urls';

@@ -36,7 +36,8 @@ use warnings;
 use testapi;
 use lockapi;
 use mm_network 'setup_static_mm_network';
-use utils qw(systemctl zypper_call);
+use utils qw(systemctl);
+use zypper;
 use version_utils qw(is_sle is_jeos is_opensuse);
 
 sub setup_http_server {

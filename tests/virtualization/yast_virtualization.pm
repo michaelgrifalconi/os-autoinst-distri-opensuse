@@ -14,6 +14,7 @@
 use base 'y2_module_guitest';
 use strict;
 use warnings;
+use zypper;
 use testapi;
 use Utils::Architectures;
 use utils;

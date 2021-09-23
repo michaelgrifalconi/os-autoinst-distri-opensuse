@@ -19,7 +19,8 @@ use base 'consoletest';
 use strict;
 use warnings;
 use testapi;
-use utils qw(clear_console zypper_call);
+use utils qw(clear_console);
+use zypper;
 
 sub run {
     my $self = shift;

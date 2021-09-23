@@ -28,7 +28,8 @@ use base "consoletest";
 use testapi;
 use strict;
 use warnings;
-use utils 'zypper_call';
+use zypper;
+
 use File::Basename 'basename';
 
 sub run {

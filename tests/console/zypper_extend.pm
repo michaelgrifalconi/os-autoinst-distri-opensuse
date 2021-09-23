@@ -51,7 +51,8 @@ use strict;
 use warnings;
 use testapi;
 use Utils::Architectures;
-use utils qw(zypper_call);
+
+use zypper;
 use version_utils qw(is_sle is_leap is_jeos is_tumbleweed);
 
 sub run {

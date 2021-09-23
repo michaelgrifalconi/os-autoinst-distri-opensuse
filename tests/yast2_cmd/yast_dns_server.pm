@@ -24,6 +24,7 @@ package yast_dns_server;
 use base 'consoletest';
 use strict;
 use warnings;
+use zypper;
 use testapi;
 use utils;
 use List::Util qw(all any);

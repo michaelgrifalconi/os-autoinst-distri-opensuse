@@ -36,10 +36,11 @@
 use base "consoletest";
 use strict;
 use warnings;
+use zypper;
 use testapi;
 use lockapi;
 use mm_network qw(configure_default_gateway configure_static_ip configure_static_dns get_host_resolv_conf parse_network_configuration);
-use utils 'zypper_call';
+
 use Utils::Systemd 'disable_and_stop_service';
 use version_utils qw(is_sle);
 
