@@ -12,7 +12,7 @@ sub run {
     #my $self = shift;
     #$self->select_serial_terminal;
 
-    zypper_call("in vim",);
+    zypper_call("in vim");
     
 
     #select_console "root-console";

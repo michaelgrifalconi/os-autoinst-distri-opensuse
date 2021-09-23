@@ -20,7 +20,7 @@ use Exporter;
 
 use strict;
 use warnings;
-use zypper;
+use opensusebasetest;
 use testapi qw(is_serial_terminal :DEFAULT);
 use version_utils qw(is_microos is_leap is_sle is_sle12_hdd_in_upgrade is_storage_ng is_jeos);
 use Mojo::UserAgent;
@@ -84,10 +84,9 @@ sub zypper_call {
     my $current_terminal = current_console();
     if ($current_terminal eq "root-console") {
         # is root, move to serial
-        my $self = shift;
-        $self->select_serial_terminal;
+        opensusebasetest::select_serial_terminal();
     }
-    my $new_terminal = current_terminal();
+    my $new_terminal = current_console();
     if ($current_terminal eq $new_terminal) {
         # is root, move to serial
         die "Nothing changed, still: $new_terminal";
