@@ -544,6 +544,19 @@ sub zypper_call {
     my $printer = $log ? "| tee /tmp/$log" : $dumb_term ? '| cat' : '';
     die 'Exit code is from PIPESTATUS[0], not grep' if $command =~ /^((?!`).)*\| ?grep/;
 
+    # Michael zypper poc
+    my $current_terminal = current_console();
+    if ($current_terminal eq "root-console") {
+        # is root, move to serial
+        opensusebasetest::select_serial_terminal();
+    }
+    my $new_terminal = current_console();
+    if ($current_terminal eq $new_terminal) {
+        # is root, move to serial
+        die "Nothing changed, still: $new_terminal";
+    }
+    # End poc
+
     $IN_ZYPPER_CALL = 1;
     # Retrying workarounds
     my $ret;
@@ -595,6 +608,12 @@ sub zypper_call {
         die $msg;
     }
     $IN_ZYPPER_CALL = 0;
+    # Michael poc
+    if ($current_terminal eq "root-console") {
+        # was root, move back to root
+        select_console('root-console');
+    }
+    # End poc
     return $ret;
 }
 
