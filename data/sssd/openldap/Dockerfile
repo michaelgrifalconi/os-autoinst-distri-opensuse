@@ -2,9 +2,9 @@ ARG tag
 FROM $tag
 ARG pkgs
 ARG maint_test_repo
-RUN export MAINT_TEST_REPO=$maint_test_repo
+ENV MAINT_TEST_REPO $maint_test_repo
 ENV ADDITIONAL_MODULES sle-module-legacy
-RUN for r in ${MAINT_TEST_REPO//,/ }; do echo $r; zypper ar $r; done
+RUN bash -c 'for r in ${MAINT_TEST_REPO//,/ }; do echo $r; zypper ar $r; done'
 RUN zypper --gpg-auto-import-keys ref -s
 RUN zypper install -y $pkgs
 COPY --chown=ldap:ldap ldapserver.* slapd.conf /etc/openldap/
