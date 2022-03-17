@@ -3,7 +3,7 @@ FROM $tag
 ARG pkgs
 ARG maint_test_repo
 ENV ADDITIONAL_MODULES sle-module-legacy
-COPY add_test_repositories.sh /tmp/add_test_repositories.sh
+COPY /tmp/add_test_repositories.sh /tmp/add_test_repositories.sh
 RUN /tmp/add_test_repositories.sh $maint_test_repo
 RUN zypper --gpg-auto-import-keys ref -s
 RUN zypper install -y $pkgs
