@@ -24,8 +24,7 @@ use version_utils;
 use registration qw(add_suseconnect_product get_addon_fullname);
 
 sub run {
-    my $self = shift;
-    $self->select_serial_terminal;
+    select_console("root-console");
     if (is_sle) {
         add_suseconnect_product('PackageHub', undef, undef, undef, 300, 1);
         is_sle('<15') ? add_suseconnect_product("sle-module-containers", 12) : add_suseconnect_product("sle-module-containers");
