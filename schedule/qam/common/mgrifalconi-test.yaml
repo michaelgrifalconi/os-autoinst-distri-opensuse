@@ -7,5 +7,5 @@ schedule:
   - console/prepare_test_data
   - console/consoletest_setup
   - console/curl_ipv6
-  - console/curl_ipv6.pm
+  - console/curl_ipv6.py
 ...
