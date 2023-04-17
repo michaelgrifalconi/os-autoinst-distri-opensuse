@@ -34,7 +34,7 @@ use serial_terminal 'select_serial_terminal';
 # fi
 
 sub run {
-    my $timeout = 600;
+    my $timeout = 300;
     select_serial_terminal;
     script_run("zypper lr -d | tee /dev/$serialdev", timeout => $timeout);
     my $pkgname = get_var('PACKAGETOINSTALL');
@@ -44,7 +44,7 @@ sub run {
     }
     zypper_call "in screen $pkgname";
     clear_console;    # clear screen to see that second update does not do any more
-    assert_script_run("rpm -e $pkgname", timeout => $timeout);
+    script_retry("rpm -e $pkgname", timeout => $timeout, retry => 3, delay => 30);
     assert_script_run("! rpm -q $pkgname");
 
     if (!is_sle('<15-SP4') && !is_leap('<15.4') && !check_var('OFFLINE_SUT', '1')) {
