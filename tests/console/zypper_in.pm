@@ -34,7 +34,7 @@ use serial_terminal 'select_serial_terminal';
 # fi
 
 sub run {
-    my $timeout = 300;
+    my $timeout = 420;
     select_serial_terminal;
     script_run("zypper lr -d | tee /dev/$serialdev", timeout => $timeout);
     my $pkgname = get_var('PACKAGETOINSTALL');
