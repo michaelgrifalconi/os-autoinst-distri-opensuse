@@ -3,7 +3,7 @@ from testapi import *
 
 def run(self):
 
-    assert_script_run('ssh root@localhost -c date')
+    assert_script_run('ssh root@localhost date')
 
 
 def switch_to_root_console():
