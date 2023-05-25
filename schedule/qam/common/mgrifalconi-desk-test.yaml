@@ -1,0 +1,9 @@
+---
+name: mau-extratests-desktop
+schedule:
+  - boot/boot_to_desktop
+  - console/system_prepare
+  - console/prepare_test_data
+  - console/consoletest_setup
+  - python/qe-core/x11/openbroadcastersoftware.py
+
