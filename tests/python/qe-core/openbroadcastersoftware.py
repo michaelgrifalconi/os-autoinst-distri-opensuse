@@ -1,5 +1,5 @@
 from testapi import *
-
+from serialterminal import *
 
 def run(self):
 
