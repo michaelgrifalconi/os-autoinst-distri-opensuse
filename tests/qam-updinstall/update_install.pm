@@ -66,7 +66,11 @@ sub has_conflict {
         'dapl-devel' => 'dapl-debug-devel',
         'libdat2-2' => 'dapl-debug-libs',
         'libjpeg8-devel' => 'libjpeg62-devel',
-        dapl => 'dapl-debug'
+        dapl => 'dapl-debug',
+        'openssh8.4' => 'openssh',
+        'openssh8.4' => 'openssh-fips',
+        'openssh8.4' => 'openssh-askpass-gnome',
+        'openssh8.4' => 'openssh-helpers'
     );
     return $conflict{$binary};
 }
