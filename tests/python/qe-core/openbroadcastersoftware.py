@@ -3,6 +3,8 @@ from testapi import *
 def run(self):
 
     perl.use('serial_terminal')
+    for i in dir(perl.serial_terminal):
+        locals()[i] = getattr(perl.serial_terminal, i)
 
     ensure_installed("flatpak")
     select_serial_terminal
