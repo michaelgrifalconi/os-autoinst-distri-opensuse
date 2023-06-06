@@ -7,7 +7,7 @@ def run(self):
         locals()[i] = getattr(perl.serial_terminal, i)
 
     ensure_installed("flatpak")
-    select_serial_terminal()
+    serial_terminal.select_serial_terminal()
     assert_script_run('flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo')
     assert_script_run('flatpak install -y com.obsproject.Studio', timeout=300)
     select_console('x11')
