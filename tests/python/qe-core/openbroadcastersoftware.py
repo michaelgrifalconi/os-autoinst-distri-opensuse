@@ -2,12 +2,12 @@ from testapi import *
 
 def run(self):
 
-    perl.use("lib/serial_terminal")
+    perl.require("serial_terminal")
     for i in dir(perl.serial_terminal):
         locals()[i] = getattr(perl.serial_terminal, i)
 
     ensure_installed("flatpak")
-    select_serial_terminal
+    select_serial_terminal()
     assert_script_run('flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo')
     assert_script_run('flatpak install -y com.obsproject.Studio', timeout=300)
     select_console('x11')
