@@ -2,7 +2,7 @@ from testapi import *
 
 def run(self):
 
-    perl.use('serial_terminal')
+    perl.use("lib/serial_terminal")
     for i in dir(perl.serial_terminal):
         locals()[i] = getattr(perl.serial_terminal, i)
 
