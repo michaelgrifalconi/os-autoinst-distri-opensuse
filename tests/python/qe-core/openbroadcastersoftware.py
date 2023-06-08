@@ -3,9 +3,10 @@ from testapi import *
 def run(self):
 
     perl.require("serial_terminal")
+    perl.require("utils")
     #ensure_installed("flatpak")
     perl.serial_terminal.select_serial_terminal()
-    zypper_call('in flatpak')
+    perl.utils.zypper_call('in flatpak')
 
     #assert_script_run('flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo')
     #assert_script_run('flatpak install -y com.obsproject.Studio', timeout=300)
