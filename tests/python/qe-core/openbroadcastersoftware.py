@@ -8,8 +8,8 @@ def run(self):
     perl.serial_terminal.select_serial_terminal()
     perl.utils.zypper_call('in flatpak')
 
-    #assert_script_run('flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo')
-    #assert_script_run('flatpak install -y com.obsproject.Studio', timeout=300)
+    assert_script_run('flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo')
+    assert_script_run('flatpak install -y com.obsproject.Studio', timeout=300)
     #select_console('x11')
     #x11_start_program('obs', match_timeout=60)
     # # sometimes send_key "alt-f4" doesn't work reliable, so repeat it and exit
