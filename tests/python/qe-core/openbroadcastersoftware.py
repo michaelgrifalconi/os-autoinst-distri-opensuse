@@ -9,7 +9,7 @@ def run(self):
     perl.utils.zypper_call("in flatpak")
 
     assert_script_run("flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo")
-    assert_script_run("flatpak install -y com.obsproject.Studio")
+    assert_script_run("flatpak install -y com.obsproject.Studio",300)
     #assert_script_run("flatpak install -y com.obsproject.Studio", timeout=300)
 
     #select_console('x11')
