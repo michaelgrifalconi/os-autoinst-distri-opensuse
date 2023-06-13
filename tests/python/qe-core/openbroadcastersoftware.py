@@ -15,8 +15,8 @@ def run(self):
 
     select_console('x11')
     perl.x11utils.x11_start_program("flatpak run com.obsproject.Studio", "flatpak-obsproject")
-    # # sometimes send_key "alt-f4" doesn't work reliable, so repeat it and exit
-    # send_key_until_needlematch 'generic-desktop', "alt-f4", 6, 5;
+    # sometimes send_key "alt-f4" doesn't work reliable, so repeat it and exit
+    send_key_until_needlematch("generic-desktop", "alt-f4", 6, 5)
 
 
 def switch_to_root_console():
