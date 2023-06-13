@@ -14,7 +14,7 @@ def run(self):
     #assert_script_run("flatpak install -y com.obsproject.Studio", timeout=300) DOES NOT WORK
 
     select_console('x11')
-    perl.x11utils.x11_start_program("flatpak run com.obsproject.Studio", 1, "flatpak-obsproject")
+    perl.x11utils.x11_start_program("flatpak run com.obsproject.Studio", target_match="flatpak-obsproject")
     # sometimes send_key "alt-f4" doesn't work reliable, so repeat it and exit
     send_key_until_needlematch("generic-desktop", "alt-f4", 6, 5)
 
