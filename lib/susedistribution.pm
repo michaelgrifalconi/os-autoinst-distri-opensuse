@@ -276,6 +276,7 @@ This method is overwriting the base method in os-autoinst.
 =cut
 
 sub x11_start_program ($self, $program, %args) {
+    my ($self, $program, %args) = @_;
     my $timeout = $args{timeout};
     # enable valid option as default
     $args{valid} //= 1;
