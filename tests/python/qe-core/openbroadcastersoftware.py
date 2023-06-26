@@ -17,7 +17,7 @@ def run(self):
     perl.x11utils.x11_start_program("flatpak run com.obsproject.Studio", "target_match", "obsproject-wizard")
 
     assert_and_click("obsproject-wizard")
-    
+
     # sometimes send_key "alt-f4" doesn't work reliable, so repeat it and exit
     send_key_until_needlematch("generic-desktop", "alt-f4", 6, 5)
 

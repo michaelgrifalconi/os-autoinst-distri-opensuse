@@ -1,5 +1,5 @@
 package susedistribution;
-use Mojo::Base 'distribution', -signatures;
+use base 'distribution';
 use serial_terminal ();
 use strict;
 use warnings;
@@ -275,7 +275,7 @@ we keep the old check for the runner border.
 This method is overwriting the base method in os-autoinst.
 =cut
 
-sub x11_start_program ($self, $program, %args) {
+sub x11_start_program {
     my ($self, $program, %args) = @_;
     my $timeout = $args{timeout};
     # enable valid option as default
