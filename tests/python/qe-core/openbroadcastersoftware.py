@@ -14,8 +14,10 @@ def run(self):
 
     select_console('x11')
     perl.x11utils.turn_off_gnome_screensaver()
-    perl.x11utils.x11_start_program("flatpak run com.obsproject.Studio", "target_match", "flatpak-obsproject")
+    perl.x11utils.x11_start_program("flatpak run com.obsproject.Studio", "target_match", "obsproject-wizard")
 
+    assert_and_click("obsproject-wizard")
+    
     # sometimes send_key "alt-f4" doesn't work reliable, so repeat it and exit
     send_key_until_needlematch("generic-desktop", "alt-f4", 6, 5)
 
