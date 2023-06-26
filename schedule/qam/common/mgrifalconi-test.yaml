@@ -1,9 +1,0 @@
----
-name: mgrifalconi-test
-description: try out stuff
-schedule:
-  - installation/bootloader_start
-  - boot/boot_to_desktop
-  - console/prepare_test_data
-  - console/consoletest_setup
-  - python/qe-core/ssh.py
