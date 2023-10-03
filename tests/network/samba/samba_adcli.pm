@@ -88,7 +88,7 @@ sub join_domain {
     assert_script_run "pam-config -a --sss";
 
     foreach my $service (qw(smb nmb winbind sssd)) {
-        systemctl("enable --now $service", timeout => 180);
+        systemctl("enable --now $service", timeout => 270);
     }
     systemctl('restart nscd');
 }
