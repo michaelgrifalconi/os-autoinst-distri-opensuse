@@ -67,7 +67,7 @@ sub has_conflict {
         'libdat2-2' => 'dapl-debug-libs',
         'libjpeg8-devel' => 'libjpeg62-devel',
         dapl => 'dapl-debug',
-        'python311-Cython' => 'python311-Cython0'
+        'python311-Cython0' => 'python311-Cython'
     );
     return $conflict{$binary};
 }
