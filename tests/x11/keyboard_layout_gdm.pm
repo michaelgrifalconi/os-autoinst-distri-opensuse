@@ -36,6 +36,9 @@ sub run {
     enter_cmd "echo \"test \\\$1 == qwerty && loadkeys us && echo done > /dev/$serialdev\" > $kbdlayout_script";
     assert_script_run "cat $kbdlayout_script";
     assert_script_run "yast keyboard set layout=german; echo";    # echo should produce clean bash prompt
+    enter_cmd "bash $kbdlayout_script qwertz";
+    wait_serial 'done';
+    assert_script_run '$(exit $?)';
 
     $self->reboot(setnologin => 1);
 
