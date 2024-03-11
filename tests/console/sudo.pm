@@ -102,7 +102,7 @@ sub full_test {
 
 sub run {
     select_console 'root-console';
-    zypper_call 'in sudo expect';
+    zypper_call 'in expect';
     select_console 'user-console';
     # Defaults targetpw -> asks for root PW
     my $exp_user = (is_azure && is_sle('>=15-SP4')) ? 'bernhard is not in the sudoers file' : 'root';
