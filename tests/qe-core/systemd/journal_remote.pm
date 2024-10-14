@@ -27,7 +27,7 @@ sub run {
     assert_script_run("mkdir -p /var/log/journal/remote");
 
     systemctl('enable systemd-journal-remote.socket');
-    assert_script_run("sed -i 's/^ListenStream=.*$/ListenStream=9090/' /etc/systemd/system/sockets.target.wants/systemd-journal-remote.socket");
+    assert_script_run("sed -i \'s/^ListenStream=.*\$/ListenStream=9090/\' /etc/systemd/system/sockets.target.wants/systemd-journal-remote.socket");
 
 
     # Start them both
