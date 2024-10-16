@@ -27,20 +27,25 @@ sub run {
     assert_script_run("mkdir -p /var/log/journal/remote");
 
     systemctl('enable systemd-journal-remote.socket');
-    assert_script_run("sed -i \'s/^ListenStream=.*\$/ListenStream=9090/\' /etc/systemd/system/sockets.target.wants/systemd-journal-remote.socket");
+    assert_script_run("sed -i --follow-symlinks \'s/^ListenStream=.*\$/ListenStream=9090/\' /etc/systemd/system/sockets.target.wants/systemd-journal-remote.socket");
 
+    assert_script_run("cp /usr/lib/systemd/system/systemd-journal-remote.service /etc/systemd/system/systemd-journal-remote.service")
+    assert_script_run("sed -i \'s/--listen-https=-3/--listen-http=-3/g\' /etc/systemd/system/systemd-journal-remote.service")
+
+    assert_script_run("chown systemd-journal-remote /var/log/journal/remote")
 
     # Start them both
+    assert_script_run("systemctl daemon-reload")
     systemctl('restart systemd-journal-remote.socket');
-    script_run("sleep 10");
+    script_run("sleep 3");
     systemctl('restart systemd-journal-upload.service');
-    script_run("sleep 10");
+    script_run("sleep 3");
 
     # Send a log message and look for it on both local and remote journalctl
     assert_script_run("echo 'TEST_MESSAGE_FOR_JOURNAL_UPLOADER' | systemd-cat");
-    script_run("sleep 15");
+    script_run("sleep 3");
     assert_script_run('journalctl --since "10 min ago" -g TEST_MESSAGE_FOR_JOURNAL_UPLOADER');
-    #assert_script_run('journalctl  --file /var/log/journal/remote/remote-localhost.journalf --since "10 min ago" -g TEST_MESSAGE_FOR_JOURNAL_UPLOADER');
+    assert_script_run('journalctl  --file /var/log/journal/remote/remote-127.0.0.1.journal --since "10 min ago" -g TEST_MESSAGE_FOR_JOURNAL_UPLOADER');
 
 
 }
