@@ -29,13 +29,13 @@ sub run {
     systemctl('enable systemd-journal-remote.socket');
     assert_script_run("sed -i --follow-symlinks \'s/^ListenStream=.*\$/ListenStream=9090/\' /etc/systemd/system/sockets.target.wants/systemd-journal-remote.socket");
 
-    assert_script_run("cp /usr/lib/systemd/system/systemd-journal-remote.service /etc/systemd/system/systemd-journal-remote.service")
-    assert_script_run("sed -i \'s/--listen-https=-3/--listen-http=-3/g\' /etc/systemd/system/systemd-journal-remote.service")
+    assert_script_run("cp /usr/lib/systemd/system/systemd-journal-remote.service /etc/systemd/system/systemd-journal-remote.service");
+    assert_script_run("sed -i \'s/--listen-https=-3/--listen-http=-3/g\' /etc/systemd/system/systemd-journal-remote.service");
 
-    assert_script_run("chown systemd-journal-remote /var/log/journal/remote")
+    assert_script_run("chown systemd-journal-remote /var/log/journal/remote");
 
     # Start them both
-    assert_script_run("systemctl daemon-reload")
+    assert_script_run("systemctl daemon-reload");
     systemctl('restart systemd-journal-remote.socket');
     script_run("sleep 3");
     systemctl('restart systemd-journal-upload.service');
