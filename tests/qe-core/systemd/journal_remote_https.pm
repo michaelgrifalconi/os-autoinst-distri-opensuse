@@ -46,7 +46,7 @@ sub run {
     assert_script_run("openssl x509 -req -days 365000 -set_serial 01 -in /etc/ssl/private/journal-remote-req.pem -out /etc/ssl/certs/journal-remote-cert.pem -CA /etc/ssl/ca/journal-remote-ca-cert.pem -CAkey /etc/ssl/ca/journal-remote-ca-key.pem");
     # Give ownership
     assert_script_run("chown systemd-journal-remote /etc/ssl/private/journal-remote-key.pem");
-    assert_script_run("chown systemd-journal-remote /etc/ssl/certs/journal-remote.pem");
+    assert_script_run("chown systemd-journal-remote /etc/ssl/certs/journal-remote-cert.pem");
     assert_script_run("chown systemd-journal-remote /etc/ssl/ca/journal-remote-ca-cert.pem");
 
 
@@ -72,7 +72,7 @@ sub run {
     assert_script_run("openssl x509 -req -days 365000 -set_serial 01 -in /etc/ssl/private/journal-upload-req.pem -out /etc/ssl/certs/journal-upload-cert.pem -CA /etc/ssl/ca/journal-upload-ca-cert.pem -CAkey /etc/ssl/ca/journal-upload-ca-key.pem");
     # Give ownership
     assert_script_run("chown systemd-journal-upload /etc/ssl/private/journal-upload-key.pem");
-    assert_script_run("chown systemd-journal-upload /etc/ssl/certs/journal-upload.pem");
+    assert_script_run("chown systemd-journal-upload /etc/ssl/certs/journal-upload-cert.pem");
     assert_script_run("chown systemd-journal-upload /etc/ssl/ca/journal-upload-ca-cert.pem");
 
     systemctl('enable systemd-journal-upload.service');
