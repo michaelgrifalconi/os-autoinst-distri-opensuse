@@ -29,7 +29,7 @@ sub run {
 
     assert_script_run("chown systemd-journal-remote /var/log/journal/remote");
 
-    $journal_remote_conf = "/etc/systemd/journal-remote.conf";
+    my $journal_remote_conf = "/etc/systemd/journal-remote.conf";
     assert_script_run("echo '[Remote]' > $journal_remote_conf");
     assert_script_run("echo 'ServerKeyFile=/etc/ssl/private/journal-remote-key.pem' >> $journal_remote_conf");
     assert_script_run("echo 'ServerCertificateFile=/etc/ssl/certs/journal-remote-cert.pem' >> $journal_remote_conf");
@@ -52,7 +52,7 @@ sub run {
 
     ### Setup uploader service
 
-    $journal_upload_conf = "/etc/systemd/journal-upload.conf";
+    my $journal_upload_conf = "/etc/systemd/journal-upload.conf";
     assert_script_run("echo '[Upload]' > $journal_upload_conf");
     assert_script_run("echo 'URL=https://127.0.0.1:9090' > $journal_upload_conf");
     assert_script_run("echo 'ServerKeyFile=/etc/ssl/private/journal-upload-key.pem' >> $journal_upload_conf");
