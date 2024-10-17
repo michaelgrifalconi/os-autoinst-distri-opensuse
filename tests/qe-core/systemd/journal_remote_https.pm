@@ -62,6 +62,7 @@ sub run {
 
     ## Create client keys
     # The default configuration for systemd-journal-upload is that it uses a temporary user that only exists while the process is running. This makes allowing systemd-journal-upload to read the TLS certificates and keys more complicated. To resolve this you will create a new system user with the same name as the temporary user that will get used in its place.
+    assert_script_run("groupadd systemd-journal-upload");
     assert_script_run("useradd --system --home-dir /run/systemd --no-create-home --groups systemd-journal-upload");
     # CA and CA Cert
     assert_script_run("openssl genrsa 2048 > /etc/ssl/ca/journal-upload-ca-key.pem");
