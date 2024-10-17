@@ -20,34 +20,55 @@ sub run {
     zypper_call("in systemd-journal-remote");
 
     ### Setup receiver service
-    assert_script_run("mkdir -p /var/log/journal/remote");
+
 
     systemctl('enable systemd-journal-remote.socket');
     assert_script_run("sed -i --follow-symlinks \'s/^ListenStream=.*\$/ListenStream=9090/\' /etc/systemd/system/sockets.target.wants/systemd-journal-remote.socket");
 
     assert_script_run("cp /usr/lib/systemd/system/systemd-journal-remote.service /etc/systemd/system/systemd-journal-remote.service");
 
+    assert_script_run("mkdir -p /var/log/journal/remote");
     assert_script_run("chown systemd-journal-remote /var/log/journal/remote");
 
     my $journal_remote_conf = "/etc/systemd/journal-remote.conf";
     assert_script_run("echo '[Remote]' > $journal_remote_conf");
-    assert_script_run("echo 'ServerKeyFile=/etc/ssl/private/journal-remote-key.pem' >> $journal_remote_conf");
-    assert_script_run("echo 'ServerCertificateFile=/etc/ssl/certs/journal-remote-cert.pem' >> $journal_remote_conf");
-    assert_script_run("echo 'TrustedCertificateFile=/etc/ssl/ca/journal-remote-ca-cert.pem' >> $journal_remote_conf");
+    Seal=false
+SplitMode=host
+
+chmod o+rx /etc/ssl/private
+
+    my $mySSLpath = "/etc/journal"
+
+    assert_script_run("echo 'ServerKeyFile=$mySSLpath/private/journal-remote-key.pem' >> $journal_remote_conf");
+    assert_script_run("echo 'ServerCertificateFile=$mySSLpath/certs/journal-remote-cert.pem' >> $journal_remote_conf");
+    assert_script_run("echo 'TrustedCertificateFile=$mySSLpath/ca/journal-remote-ca-cert.pem' >> $journal_remote_conf");
 
     ## Create server keys
-    assert_script_run("mkdir -p /etc/ssl/ca");
+    assert_script_run("mkdir -p $mySSLpath/ca");
+    assert_script_run("mkdir -p $mySSLpath/private");
+    assert_script_run("mkdir -p $mySSLpath/certs");
     # CA and CA Cert
-    assert_script_run("openssl genrsa 2048 > /etc/ssl/ca/journal-remote-ca-key.pem");
-    assert_script_run("openssl req -new -x509 -nodes -days 365000 -key /etc/ssl/ca/journal-remote-ca-key.pem -out /etc/ssl/ca/journal-remote-ca-cert.pem -subj '/C=PE/ST=Lima/L=Lima/O=Acme Inc. /OU=IT Department/CN=acmeCA.com'");
+    assert_script_run("openssl genrsa 2048 > $mySSLpath/ca/journal-remote-ca-key.pem");
+    assert_script_run("openssl req -new -x509 -nodes -days 365000 -key $mySSLpath/ca/journal-remote-ca-key.pem -out $mySSLpath/ca/journal-remote-ca-cert.pem -subj '/C=PE/ST=Lima/L=Lima/O=Acme Inc. /OU=IT Department/CN=acmeCA.com'");
     # Server Key and Cert Req
-    assert_script_run("openssl req -newkey rsa:2048 -nodes -days 365000 -keyout /etc/ssl/private/journal-remote-key.pem -out /etc/ssl/private/journal-remote-req.pem -subj '/C=PE/ST=Lima/L=Lima/O=Acme Inc. /OU=IT Department/CN=acme.com'");
+    assert_script_run("openssl req -newkey rsa:2048 -nodes -days 365000 -keyout $mySSLpath/private/journal-remote-key.pem -out $mySSLpath/private/journal-remote-req.pem -subj '/C=PE/ST=Lima/L=Lima/O=Acme Inc. /OU=IT Department/CN=acme.com'");
     # Server Cert signed by CA
-    assert_script_run("openssl x509 -req -days 365000 -set_serial 01 -in /etc/ssl/private/journal-remote-req.pem -out /etc/ssl/certs/journal-remote-cert.pem -CA /etc/ssl/ca/journal-remote-ca-cert.pem -CAkey /etc/ssl/ca/journal-remote-ca-key.pem");
+    assert_script_run("openssl x509 -req -days 365000 -set_serial 01 -in $mySSLpath/private/journal-remote-req.pem -out $mySSLpath/certs/journal-remote-cert.pem -CA $mySSLpath/ca/journal-remote-ca-cert.pem -CAkey $mySSLpath/ca/journal-remote-ca-key.pem");
     # Give ownership
-    assert_script_run("chown systemd-journal-remote /etc/ssl/private/journal-remote-key.pem");
-    assert_script_run("chown systemd-journal-remote /etc/ssl/certs/journal-remote-cert.pem");
-    assert_script_run("chown systemd-journal-remote /etc/ssl/ca/journal-remote-ca-cert.pem");
+    assert_script_run("chown systemd-journal-remote $mySSLpath/private/journal-remote-key.pem");
+    assert_script_run("chown systemd-journal-remote $mySSLpath/certs/journal-remote-cert.pem");
+    assert_script_run("chown systemd-journal-remote $mySSLpath/ca/journal-remote-ca-cert.pem");
+
+    assert_script_run("chmod 0640 $mySSLpath/private/journal-remote-key.pem");
+    assert_script_run("chmod 0755 $mySSLpath/{certs/journal-remote-cert.pem,ca/journal-remote-ca-cert.pem}");
+    
+    chgrp systemd-journal-remote /etc/ssl/private/journal-remote-key.pem
+
+ cp $mySSLpath/ca/journal-remote-ca-cert.pem /etc/pki/trust/anchors/
+ cp $mySSLpath/ca/journal-remote-ca-cert.pem /etc/pki/trust/anchors/
+ update-ca-certificates
+
+
 
 
     ### Setup uploader service
@@ -55,9 +76,9 @@ sub run {
     my $journal_upload_conf = "/etc/systemd/journal-upload.conf";
     assert_script_run("echo '[Upload]' > $journal_upload_conf");
     assert_script_run("echo 'URL=https://127.0.0.1:9090' > $journal_upload_conf");
-    assert_script_run("echo 'ServerKeyFile=/etc/ssl/private/journal-upload-key.pem' >> $journal_upload_conf");
-    assert_script_run("echo 'ServerCertificateFile=/etc/ssl/certs/journal-upload-cert.pem' >> $journal_upload_conf");
-    assert_script_run("echo 'TrustedCertificateFile=/etc/ssl/ca/journal-upload-ca-cert.pem' >> $journal_upload_conf");
+    assert_script_run("echo 'ServerKeyFile=$mySSLpath/private/journal-upload-key.pem' >> $journal_upload_conf");
+    assert_script_run("echo 'ServerCertificateFile=$mySSLpath/certs/journal-upload-cert.pem' >> $journal_upload_conf");
+    assert_script_run("echo 'TrustedCertificateFile=$mySSLpath/ca/journal-upload-ca-cert.pem' >> $journal_upload_conf");
 
 
     ## Create client keys
@@ -65,16 +86,16 @@ sub run {
     assert_script_run("groupadd systemd-journal-upload");
     assert_script_run("useradd --system --home-dir /run/systemd --no-create-home --groups systemd-journal-upload systemd-journal-upload");
     # CA and CA Cert
-    assert_script_run("openssl genrsa 2048 > /etc/ssl/ca/journal-upload-ca-key.pem");
-    assert_script_run("openssl req -new -x509 -nodes -days 365000 -key /etc/ssl/ca/journal-upload-ca-key.pem -out /etc/ssl/ca/journal-upload-ca-cert.pem -subj '/C=PE/ST=Lima/L=Lima/O=Acme Inc. /OU=IT Department/CN=acmeCA.com'");
+    assert_script_run("openssl genrsa 2048 > $mySSLpath/ca/journal-upload-ca-key.pem");
+    assert_script_run("openssl req -new -x509 -nodes -days 365000 -key $mySSLpath/ca/journal-upload-ca-key.pem -out $mySSLpath/ca/journal-upload-ca-cert.pem -subj '/C=PE/ST=Lima/L=Lima/O=Acme Inc. /OU=IT Department/CN=acmeCA.com'");
     # Server Key and Cert Req
-    assert_script_run("openssl req -newkey rsa:2048 -nodes -days 365000 -keyout /etc/ssl/private/journal-upload-key.pem -out /etc/ssl/private/journal-upload-req.pem -subj '/C=PE/ST=Lima/L=Lima/O=Acme Inc. /OU=IT Department/CN=acme.com'");
+    assert_script_run("openssl req -newkey rsa:2048 -nodes -days 365000 -keyout $mySSLpath/private/journal-upload-key.pem -out $mySSLpath/private/journal-upload-req.pem -subj '/C=PE/ST=Lima/L=Lima/O=Acme Inc. /OU=IT Department/CN=acme.com'");
     # Server Cert signed by CA
-    assert_script_run("openssl x509 -req -days 365000 -set_serial 01 -in /etc/ssl/private/journal-upload-req.pem -out /etc/ssl/certs/journal-upload-cert.pem -CA /etc/ssl/ca/journal-upload-ca-cert.pem -CAkey /etc/ssl/ca/journal-upload-ca-key.pem");
+    assert_script_run("openssl x509 -req -days 365000 -set_serial 01 -in $mySSLpath/private/journal-upload-req.pem -out $mySSLpath/certs/journal-upload-cert.pem -CA $mySSLpath/ca/journal-upload-ca-cert.pem -CAkey /etc/ssl/ca/journal-upload-ca-key.pem");
     # Give ownership
-    assert_script_run("chown systemd-journal-upload /etc/ssl/private/journal-upload-key.pem");
-    assert_script_run("chown systemd-journal-upload /etc/ssl/certs/journal-upload-cert.pem");
-    assert_script_run("chown systemd-journal-upload /etc/ssl/ca/journal-upload-ca-cert.pem");
+    assert_script_run("chown systemd-journal-upload $mySSLpath/private/journal-upload-key.pem");
+    assert_script_run("chown systemd-journal-upload $mySSLpath/certs/journal-upload-cert.pem");
+    assert_script_run("chown systemd-journal-upload $mySSLpath/ca/journal-upload-ca-cert.pem");
 
     systemctl('enable systemd-journal-upload.service');
     
