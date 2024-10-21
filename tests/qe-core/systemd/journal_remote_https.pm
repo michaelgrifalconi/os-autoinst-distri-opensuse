@@ -126,6 +126,8 @@ sub run {
     script_run("sleep 3");
     systemctl('restart systemd-journal-upload.service');
     script_run("sleep 3");
+
+    script_run("journalctl --since '3 min ago'");
     record_info('systemd-journal-remote', script_output('systemctl status systemd-journal-remote.socket'));
     record_info('systemd-journal-upload', script_output('systemctl status systemd-journal-upload.service'));
 
@@ -139,12 +141,6 @@ sub run {
 
 }
 
-sub post_fail_hook {
-
-    select_serial_terminal
-    script_run("journalctl --since '10min ago'");
- 
-}
 
 1;
 
