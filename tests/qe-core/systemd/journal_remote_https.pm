@@ -122,6 +122,8 @@ sub run {
     script_run("sleep 3");
     systemctl('restart systemd-journal-upload.service');
     script_run("sleep 3");
+    record_info('systemd-journal-remote', script_output('systemctl status systemd-journal-remote.socket'));
+    record_info('systemd-journal-upload', script_output('systemctl status systemd-journal-upload.service'));
 
     # Send a log message and look for it on both local and remote journalctl
     assert_script_run("echo 'TEST_MESSAGE_FOR_JOURNAL_UPLOADER' | systemd-cat");
