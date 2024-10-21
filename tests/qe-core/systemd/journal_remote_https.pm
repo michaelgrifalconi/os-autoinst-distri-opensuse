@@ -32,8 +32,8 @@ sub run {
 
     my $journal_remote_conf = "/etc/systemd/journal-remote.conf";
     assert_script_run("echo '[Remote]' > $journal_remote_conf");
-    assert_script_run("echo 'Seal=false' > $journal_remote_conf");
-    assert_script_run("echo 'SplitMode=host' > $journal_remote_conf");
+    assert_script_run("echo 'Seal=false' >> $journal_remote_conf");
+    assert_script_run("echo 'SplitMode=host' >> $journal_remote_conf");
 
 
     #chmod o+rx /etc/ssl/private
