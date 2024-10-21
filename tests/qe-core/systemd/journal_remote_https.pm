@@ -81,8 +81,7 @@ sub run {
     assert_script_run("echo 'ServerCertificateFile=/etc/journal/certs/journal-upload-cert.pem' >> $journal_upload_conf");
     assert_script_run("echo 'TrustedCertificateFile=/etc/journal/ca/journal-remote-ca-cert.pem' >> $journal_upload_conf");
 
-    # Make the uploader service trust the remote (server) certificate
-    assert_script_run("sed -i --follow-symlinks \'/ExecStart=/ s/\$/ --trust=all/\' /etc/systemd/system/multi-user.target.wants/systemd-journal-upload.service");
+
 
     ## Create client keys
     # The default configuration for systemd-journal-upload is that it uses a temporary user that only exists while the process is running. This makes allowing systemd-journal-upload to read the TLS certificates and keys more complicated. To resolve this you will create a new system user with the same name as the temporary user that will get used in its place.
@@ -112,6 +111,9 @@ sub run {
 
 
     systemctl('enable systemd-journal-upload.service');
+
+    # Make the uploader service trust the remote (server) certificate
+    assert_script_run("sed -i --follow-symlinks \'/ExecStart=/ s/\$/ --trust=all/\' /etc/systemd/system/multi-user.target.wants/systemd-journal-upload.service");
     
 
 #https://mariadb.com/docs/server/security/data-in-transit-encryption/create-self-signed-certificates-keys-openssl/
