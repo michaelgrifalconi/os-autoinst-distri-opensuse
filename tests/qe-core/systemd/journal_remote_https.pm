@@ -76,7 +76,7 @@ sub run {
 
     my $journal_upload_conf = "/etc/systemd/journal-upload.conf";
     assert_script_run("echo '[Upload]' > $journal_upload_conf");
-    assert_script_run("echo 'URL=https://127.0.0.1:9090' >> $journal_upload_conf");
+    assert_script_run("echo 'URL=https://localhost:9090' >> $journal_upload_conf");
     assert_script_run("echo 'ServerKeyFile=/etc/journal/private/journal-upload-key.pem' >> $journal_upload_conf");
     assert_script_run("echo 'ServerCertificateFile=/etc/journal/certs/journal-upload-cert.pem' >> $journal_upload_conf");
     #assert_script_run("echo 'TrustedCertificateFile=/etc/journal/ca/journal-remote-ca-cert.pem' >> $journal_upload_conf"); # TODO: cannot use together with --trust=all
