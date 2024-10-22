@@ -57,12 +57,12 @@ sub run {
     # Server Cert signed by CA
     assert_script_run("openssl x509 -req -days 365000 -set_serial 01 -in /etc/journal/private/journal-remote-req.pem -out /etc/journal/certs/journal-remote-cert.pem -CA /etc/journal/ca/journal-ca-cert.pem -CAkey /etc/journal/ca/journal-ca-key.pem");
     # Give ownership
-    assert_script_run("chown systemd-journal-remote /etc/journal/private/journal-remote-key.pem");
-    assert_script_run("chown systemd-journal-remote /etc/journal/certs/journal-remote-cert.pem");
-    assert_script_run("chown systemd-journal-remote /etc/journal/ca/journal-ca-cert.pem");
+    #assert_script_run("chown systemd-journal-remote /etc/journal/private/journal-remote-key.pem");
+    #assert_script_run("chown systemd-journal-remote /etc/journal/certs/journal-remote-cert.pem");
+    #assert_script_run("chown systemd-journal-remote /etc/journal/ca/journal-ca-cert.pem");
 
-    assert_script_run("chmod 0640 /etc/journal/private/journal-remote-key.pem");
-    assert_script_run("chmod 0755 /etc/journal/{certs/journal-remote-cert.pem,ca/journal-ca-cert.pem}");
+    #assert_script_run("chmod 0640 /etc/journal/private/journal-remote-key.pem");
+    #assert_script_run("chmod 0755 /etc/journal/{certs/journal-remote-cert.pem,ca/journal-ca-cert.pem}");
     
     # TODO: check if needed #chgrp systemd-journal-remote /etc/ssl/private/journal-remote-key.pem
 
@@ -102,8 +102,15 @@ sub run {
     # Server Cert signed by CA
     assert_script_run("openssl x509 -req -days 365000 -set_serial 01 -in /etc/journal/private/journal-upload-req.pem -out /etc/journal/certs/journal-upload-cert.pem -CA /etc/journal/ca/journal-ca-cert.pem -CAkey /etc/journal/ca/journal-ca-key.pem");
     # Give ownership
-    assert_script_run("chown systemd-journal-upload /etc/journal/private/journal-upload-key.pem");
-    assert_script_run("chown systemd-journal-upload /etc/journal/certs/journal-upload-cert.pem");
+    #assert_script_run("chown systemd-journal-upload /etc/journal/private/journal-upload-key.pem");
+    #assert_script_run("chown systemd-journal-upload /etc/journal/certs/journal-upload-cert.pem");
+
+
+    assert_script_run("chown -R systemd-journal-remote:systemd-journal /etc/journal");
+    assert_script_run("chmod -R g+rwX /etc/journal");
+
+
+
     #assert_script_run("chown systemd-journal-upload /etc/journal/ca/journal-remote-ca-cert.pem");
     # TODO: who owns the CA??
 
