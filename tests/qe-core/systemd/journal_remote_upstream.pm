@@ -17,6 +17,7 @@ use utils;
 sub run {
 
     select_serial_terminal;
+    zypper_call("in systemd-journal-remote");
     assert_script_run 'wget --quiet ' . data_url('console/journal_remote_upstream.sh');
     assert_script_run 'chmod +x journal_remote_upstream.sh';
     assert_script_run "./journal_remote_upstream.sh", 300;
