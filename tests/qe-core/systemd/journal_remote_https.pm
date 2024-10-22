@@ -41,7 +41,7 @@ sub run {
 
     assert_script_run("echo 'ServerKeyFile=/etc/journal/private/journal-remote-key.pem' >> $journal_remote_conf");
     assert_script_run("echo 'ServerCertificateFile=/etc/journal/certs/journal-remote-cert.pem' >> $journal_remote_conf");
-    assert_script_run("echo 'TrustedCertificateFile=/etc/journal/ca/journal-remote-ca-cert.pem' >> $journal_remote_conf");
+    assert_script_run("echo 'TrustedCertificateFile=/etc/journal/ca/journal-ca-cert.pem' >> $journal_remote_conf");
 
     ## Create server keys
 
@@ -50,19 +50,19 @@ sub run {
     assert_script_run("mkdir -p /etc/journal/private");
     assert_script_run("mkdir -p /etc/journal/certs");
     
-    assert_script_run("openssl genrsa 2048 > /etc/journal/ca/journal-remote-ca-key.pem");
-    assert_script_run("openssl req -new -x509 -nodes -days 365000 -key /etc/journal/ca/journal-remote-ca-key.pem -out /etc/journal/ca/journal-remote-ca-cert.pem -subj '/C=PE/ST=Lima/L=Lima/O=Acme Inc. /OU=IT Department/CN=localhost'");
+    assert_script_run("openssl genrsa 2048 > /etc/journal/ca/journal-ca-key.pem");
+    assert_script_run("openssl req -new -x509 -nodes -days 365000 -key /etc/journal/ca/journal-ca-key.pem -out /etc/journal/ca/journal-ca-cert.pem -subj '/C=PE/ST=Lima/L=Lima/O=Acme Inc. /OU=IT Department/CN=localhost'");
     # Server Key and Cert Req
     assert_script_run("openssl req -newkey rsa:2048 -nodes -days 365000 -keyout /etc/journal/private/journal-remote-key.pem -out /etc/journal/private/journal-remote-req.pem -subj '/C=PE/ST=Lima/L=Lima/O=Acme Inc. /OU=IT Department/CN=localhost'");
     # Server Cert signed by CA
-    assert_script_run("openssl x509 -req -days 365000 -set_serial 01 -in /etc/journal/private/journal-remote-req.pem -out /etc/journal/certs/journal-remote-cert.pem -CA /etc/journal/ca/journal-remote-ca-cert.pem -CAkey /etc/journal/ca/journal-remote-ca-key.pem");
+    assert_script_run("openssl x509 -req -days 365000 -set_serial 01 -in /etc/journal/private/journal-remote-req.pem -out /etc/journal/certs/journal-remote-cert.pem -CA /etc/journal/ca/journal-ca-cert.pem -CAkey /etc/journal/ca/journal-ca-key.pem");
     # Give ownership
     assert_script_run("chown systemd-journal-remote /etc/journal/private/journal-remote-key.pem");
     assert_script_run("chown systemd-journal-remote /etc/journal/certs/journal-remote-cert.pem");
-    assert_script_run("chown systemd-journal-remote /etc/journal/ca/journal-remote-ca-cert.pem");
+    assert_script_run("chown systemd-journal-remote /etc/journal/ca/journal-ca-cert.pem");
 
     assert_script_run("chmod 0640 /etc/journal/private/journal-remote-key.pem");
-    assert_script_run("chmod 0755 /etc/journal/{certs/journal-remote-cert.pem,ca/journal-remote-ca-cert.pem}");
+    assert_script_run("chmod 0755 /etc/journal/{certs/journal-remote-cert.pem,ca/journal-ca-cert.pem}");
     
     # TODO: check if needed #chgrp systemd-journal-remote /etc/ssl/private/journal-remote-key.pem
 
@@ -88,9 +88,9 @@ sub run {
     # The default configuration for systemd-journal-upload is that it uses a temporary user that only exists while the process is running. This makes allowing systemd-journal-upload to read the TLS certificates and keys more complicated. To resolve this you will create a new system user with the same name as the temporary user that will get used in its place.
     assert_script_run("groupadd systemd-journal-upload");
     assert_script_run("useradd --system --home-dir /run/systemd --no-create-home --groups systemd-journal-upload systemd-journal-upload");
-    # CA and CA Cert
-    assert_script_run("openssl genrsa 2048 > /etc/journal/ca/journal-upload-ca-key.pem");
-    assert_script_run("openssl req -new -x509 -nodes -days 365000 -key /etc/journal/ca/journal-upload-ca-key.pem -out /etc/journal/ca/journal-upload-ca-cert.pem -subj '/C=PE/ST=Lima/L=Lima/O=Acme Inc. /OU=IT Department/CN=localhost'");
+    # # CA and CA Cert
+    # assert_script_run("openssl genrsa 2048 > /etc/journal/ca/journal-upload-ca-key.pem");
+    # assert_script_run("openssl req -new -x509 -nodes -days 365000 -key /etc/journal/ca/journal-upload-ca-key.pem -out /etc/journal/ca/journal-upload-ca-cert.pem -subj '/C=PE/ST=Lima/L=Lima/O=Acme Inc. /OU=IT Department/CN=localhost'");
     # Server Key and Cert Req
     assert_script_run("openssl req -newkey rsa:2048 -nodes -days 365000 -keyout /etc/journal/private/journal-upload-key.pem -out /etc/journal/private/journal-upload-req.pem -subj '/C=PE/ST=Lima/L=Lima/O=UPLOAD_CERT /OU=IT Department/CN=localhost'");
 
@@ -100,12 +100,12 @@ sub run {
     # TODO: try if we really need SINGLE  CA for both or not
 
     # Server Cert signed by CA
-    assert_script_run("openssl x509 -req -days 365000 -set_serial 01 -in /etc/journal/private/journal-upload-req.pem -out /etc/journal/certs/journal-upload-cert.pem -CA /etc/journal/ca/journal-remote-ca-cert.pem -CAkey /etc/journal/ca/journal-remote-ca-key.pem");
+    assert_script_run("openssl x509 -req -days 365000 -set_serial 01 -in /etc/journal/private/journal-upload-req.pem -out /etc/journal/certs/journal-upload-cert.pem -CA /etc/journal/ca/journal-ca-cert.pem -CAkey /etc/journal/ca/journal-ca-key.pem");
     # Give ownership
     assert_script_run("chown systemd-journal-upload /etc/journal/private/journal-upload-key.pem");
     assert_script_run("chown systemd-journal-upload /etc/journal/certs/journal-upload-cert.pem");
-    assert_script_run("chown systemd-journal-upload /etc/journal/ca/journal-remote-ca-cert.pem");
-
+    #assert_script_run("chown systemd-journal-upload /etc/journal/ca/journal-remote-ca-cert.pem");
+    # TODO: who owns the CA??
 
     # TODO: check if neededcp /etc/journal/ca/journal-upload-ca-cert.pem /etc/pki/trust/anchors/
     # TODO: check if needed update-ca-certificates
@@ -114,8 +114,8 @@ sub run {
     systemctl('enable systemd-journal-upload.service');
 
     # Make the uploader service trust the remote (server) certificate
-    assert_script_run("sed -i --follow-symlinks \'/ExecStart=/ s/\$/ --trust=all/\' /etc/systemd/system/multi-user.target.wants/systemd-journal-upload.service");
-    
+    #assert_script_run("sed -i --follow-symlinks \'/ExecStart=/ s/\$/ --trust=all/\' /etc/systemd/system/multi-user.target.wants/systemd-journal-upload.service");
+    # TODO: triying to not use --trust
 
 #https://mariadb.com/docs/server/security/data-in-transit-encryption/create-self-signed-certificates-keys-openssl/
 # uploader needs cert in /etc/pki/systemd/certs/journal-upload.pem ?
