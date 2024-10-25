@@ -56,8 +56,17 @@ sub run {
         add_suseconnect_product(get_addon_fullname('sdk'));
         add_suseconnect_product(get_addon_fullname('phub'));
         add_suseconnect_product(get_addon_fullname('python3'));
+
+        # For SLE 15 SP7, use 15 SP6 repo to install systemd-testsuite
+        my $version = "";
+        if (get_var('VERSION') == "SLE-15-SP7") {
+            $version = "SLE-15-SP6";
+        } else {
+            $version = get_var('VERSION');
+        }
+
         my $repo = sprintf('http://download.suse.de/download/ibs/SUSE:/SLE-%s:/GA/standard/',
-            get_var('VERSION'));
+            $version);
         zypper_call("ar $repo systemd-tests");
     }
 
