@@ -59,8 +59,8 @@ sub run {
 
         # For SLE 15 SP7, use 15 SP6 repo to install systemd-testsuite
         my $version = "";
-        if (get_var('VERSION') == "SLE-15-SP7") {
-            $version = "SLE-15-SP6";
+        if (get_var('VERSION') == "15-SP7") {
+            $version = "15-SP6";
         } else {
             $version = get_var('VERSION');
         }
