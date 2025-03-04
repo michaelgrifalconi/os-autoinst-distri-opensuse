@@ -25,10 +25,10 @@ use transactional qw(trup_call check_reboot_changes);
 # git-core needed by ansible-galaxy
 # sudo is used by ansible to become root
 # python3-yamllint needed by ansible-test
-my $pkgs = 'ansible git-core python3-yamllint';
+my $pkgs = 'ansible-9 ansible-core-2.16 git-core python3-yamllint';
 # https://bugzilla.suse.com/show_bug.cgi?id=1210876 Nothing provides 'python3-virtualenv'
 # https://bugzilla.suse.com/show_bug.cgi?id=1210875 Package ansible-test requires Python2.7
-$pkgs .= ' ansible-test';
+#$pkgs .= ' ansible-test';
 
 sub run {
     select_serial_terminal;
@@ -42,7 +42,7 @@ sub run {
         add_suseconnect_product(get_addon_fullname('sdk'));
 
         # Package 'python3-yamllint' and 'ansible' require PackageHub is available
-        add_suseconnect_product(get_addon_fullname('phub')) if (is_phub_ready());
+        add_suseconnect_product('sle-module-systems-management');
         zypper_call '--gpg-auto-import-keys ref';
     }
 
@@ -140,8 +140,8 @@ sub run {
     assert_script_run "ansible-playbook -i hosts main.yaml --check", timeout => 300;
 
     # Run the ansible sanity test
-    script_run 'ansible-test --help';
-    assert_script_run 'ansible-test sanity';
+    #script_run 'ansible-test --help';
+    #assert_script_run 'ansible-test sanity';
 
     # 5. Ansible playbook execution
 
